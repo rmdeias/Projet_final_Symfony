@@ -1,0 +1,101 @@
+
+CREATE DATABASE IF NOT EXISTS e_commerce_cloud_campus;
+
+
+CREATE TABLE IF NOT EXISTS client
+(
+    id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    nom VARCHAR(100) NOT NULL,
+    prenom VARCHAR(100) NOT NULL,
+    mail VARCHAR(255) NOT NULL,
+    restriction BOOLEAN DEFAULT (0),
+    admin BOOLEAN DEFAULT (0),
+    password VARCHAR(255) NOT NULL,
+    ville VARCHAR(100) NULL,
+    code_postal VARCHAR(5) NULL,
+    numero_rue INT NULL,
+    libelle_voie VARCHAR(255) NULL,
+    adresse_complementaire VARCHAR(255) NULL,
+    pays VARCHAR(100) NULL,
+    paiement INT NULL
+) ENGINE = InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+CREATE TABLE IF NOT EXISTS paiement
+(
+    id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    type VARCHAR(100) NOT NULL
+) ENGINE = InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+CREATE TABLE IF NOT EXISTS commande
+(
+    id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    statut VARCHAR(100) DEFAULT 'Prise en compte de la commande',
+    date DATETIME DEFAULT  CURRENT_TIMESTAMP,
+    client INT NOT NULL
+) ENGINE = InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+CREATE TABLE IF NOT EXISTS article_commande
+(
+    id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    article INT NOT NULL,
+    commande INT NOT NULL
+) ENGINE = InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+CREATE TABLE IF NOT EXISTS article
+(
+    id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    libelle VARCHAR(255) NOT NULL ,
+    prix INT NOT NULL,
+    description TEXT NOT NULL,
+    image VARCHAR(255) NOT NULL,
+    image_alt VARCHAR(255) NULL,
+    promo INT DEFAULT (0),
+    when_deleted DATETIME DEFAULT NULL,
+    taille VARCHAR(3) NOT NULL
+) ENGINE = InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+ 
+CREATE TABLE IF NOT EXISTS fournisseur
+(
+    id INT PRIMARY KEY NOT NULL AUTO_INCREMENT, 
+    libelle VARCHAR(255) NOT NULL,
+    when_deleted DATETIME DEFAULT NULL
+) ENGINE = InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+CREATE TABLE IF NOT EXISTS livraison
+(
+    id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    quantite INT DEFAULT (0),
+    article INT NOT NULL,
+    fournisseur INT NOT NULL
+) ENGINE = InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+CREATE TABLE IF NOT EXISTS categorie_article
+(
+    id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    categorie INT NOT NULL,
+    article INT NOT NULL
+) ENGINE = InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+CREATE TABLE IF NOT EXISTS categorie
+(
+    id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    libelle VARCHAR(255) NOT NULL
+) ENGINE = InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+
+ALTER TABLE client ADD CONSTRAINT paiement FOREIGN KEY (paiement) REFERENCES paiement(id) ON UPDATE CASCADE;
+
+ALTER TABLE commande ADD FOREIGN KEY (client) REFERENCES client(id);
+
+ALTER TABLE article_commande ADD CONSTRAINT fk_article_commande FOREIGN KEY (article) REFERENCES article(id) ON DELETE CASCADE ON UPDATE CASCADE;
+
+ALTER TABLE article_commande ADD CONSTRAINT fk_commande_article FOREIGN KEY (commande) REFERENCES commande(id) ON DELETE CASCADE;
+
+ALTER TABLE categorie_article ADD CONSTRAINT fk_categorie FOREIGN KEY (categorie) REFERENCES categorie(id) ON DELETE CASCADE ON UPDATE CASCADE;
+
+ALTER TABLE categorie_article ADD CONSTRAINT fk_article_categorie FOREIGN KEY (article) REFERENCES article(id) ON DELETE CASCADE ON UPDATE CASCADE;
+
+ALTER TABLE livraison ADD FOREIGN KEY (article) REFERENCES article(id) ;
+
+ALTER TABLE livraison ADD FOREIGN KEY (fournisseur) REFERENCES fournisseur(id);
+
