@@ -12,7 +12,7 @@ services:
     ports:
       - '4306:3306'
     volumes:
-      - ./mysql:/var/lib/mysql
+      - ./symfony_docker/mysql:/var/lib/mysql
 
   php:
     container_name: php_ecommerce
