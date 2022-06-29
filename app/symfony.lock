@@ -83,6 +83,9 @@
     "laminas/laminas-code": {
         "version": "4.5.1"
     },
+    "monolog/monolog": {
+        "version": "2.7.0"
+    },
     "nikic/php-parser": {
         "version": "v4.14.0"
     },
@@ -97,6 +100,15 @@
     },
     "psr/log": {
         "version": "3.0.0"
+    },
+    "symfony/apache-pack": {
+        "version": "1.0",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "main",
+            "version": "1.0",
+            "ref": "9d254a22efca7264203eea98b866f16f944b2f09"
+        }
     },
     "symfony/cache": {
         "version": "v6.0.9"
@@ -191,6 +203,21 @@
             "version": "1.0",
             "ref": "fadbfe33303a76e25cb63401050439aa9b1a9c7f"
         }
+    },
+    "symfony/monolog-bridge": {
+        "version": "v6.0.10"
+    },
+    "symfony/monolog-bundle": {
+        "version": "3.8",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "main",
+            "version": "3.7",
+            "ref": "213676c4ec929f046dfde5ea8e97625b81bc0578"
+        },
+        "files": [
+            "config/packages/monolog.yaml"
+        ]
     },
     "symfony/password-hasher": {
         "version": "v6.0.8"
