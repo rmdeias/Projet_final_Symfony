@@ -16,6 +16,8 @@
         "symfony/framework-bundle": "6.0.*",
         "symfony/proxy-manager-bridge": "6.0.*",
         "symfony/runtime": "6.0.*",
+        "symfony/security-bundle": "6.0.*",
+        "symfony/validator": "6.0.*",
         "symfony/yaml": "6.0.*"
     },
     "config": {
@@ -70,6 +72,8 @@
         }
     },
     "require-dev": {
+        "doctrine/doctrine-fixtures-bundle": "^3.4",
+        "fzaninotto/faker": "^1.5",
         "symfony/maker-bundle": "^1.43"
     }
 }
