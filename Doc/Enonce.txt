@@ -1,0 +1,46 @@
+# Examen fin de seconde année : date limite derniere semaine 
+
+Objectif : 
+----------
+
+Réaliser un back-office pour un site e-commerce.
+
+Énoncé :
+----------
+
+Vous devrez créer un backoffice pour un site ecommerce.
+
+Pour ce faire : 
+* vous pouvez choisir d'utiliser ou non synfony
+* vous pouvez choisir d'utiliser ou non un framework Javascript pour gérer les vues
+
+Contraintes :
+-------------
+
+Le back-office devra gérer les fonctionnalités suivantes :
+
+* Voir / Ajouter / supprimer / modifier un article
+* Voir / Ajouter / supprimer / Modifier des variations sur un article
+* Gérer le stock 
+* Voir / Ajouter / supprimer / modifier un fournisseur
+* Voir les comptes clients
+* Bloquer un compte client
+* Voir les commandes
+* Changer le status d'une commande
+  (penser à répercuter ces changements sur le stock)
+
+Vous devrez également rajouter un moyen d'ajouter des clients et de passer des commandes en leur nom.
+
+Vous devrez également containeuriser vos services avec Docker & réaliser un serveur de journalisation et des sauvegarde.
+
+Votre site devra être en HTTPS.
+
+Notation :
+----------
+
+Sera pris en compte pour la notation :
+
+- Le respect du cahier des charges
+- L'aspect général du back-office
+- Le respect des bonnes pratiques 
+(- Gestion de projet)

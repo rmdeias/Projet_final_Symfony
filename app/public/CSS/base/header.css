@@ -1,0 +1,19 @@
+
+.header{
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    padding: 20px 0px; 
+}
+
+.header h1{
+    margin-left: 5px;
+}
+
+.navigation nav li{
+    padding: 0px 20px;
+}
+
+.header .btn-danger{
+    margin-right: 5px;
+}
