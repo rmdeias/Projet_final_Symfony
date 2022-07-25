@@ -21,12 +21,18 @@ class Fournisseur
     #[ORM\Column(type: 'date', nullable: true)]
     private $when_deleted;
 
-    #[ORM\ManyToMany(targetEntity: Article::class, mappedBy: 'fournisseur')]
-    private $articles;
+    #[ORM\Column(type: 'string', length: 30)]
+    private $phone;
+
+    #[ORM\Column(type: 'string', length: 255)]
+    private $address;
+
+    #[ORM\OneToMany(mappedBy: 'fournisseur', targetEntity: VariationArticle::class)]
+    private $variationArticles;
 
     public function __construct()
     {
-        $this->articles = new ArrayCollection();
+        $this->variationArticles = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -58,28 +64,56 @@ class Fournisseur
         return $this;
     }
 
-    /**
-     * @return Collection<int, Article>
-     */
-    public function getArticles(): Collection
+
+    public function getPhone(): ?string
     {
-        return $this->articles;
+        return $this->phone;
     }
 
-    public function addArticle(Article $article): self
+    public function setPhone(string $phone): self
     {
-        if (!$this->articles->contains($article)) {
-            $this->articles[] = $article;
-            $article->addFournisseur($this);
+        $this->phone = $phone;
+
+        return $this;
+    }
+
+    public function getAddress(): ?string
+    {
+        return $this->address;
+    }
+
+    public function setAddress(string $address): self
+    {
+        $this->address = $address;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, VariationArticle>
+     */
+    public function getVariationArticles(): Collection
+    {
+        return $this->variationArticles;
+    }
+
+    public function addVariationArticle(VariationArticle $variationArticle): self
+    {
+        if (!$this->variationArticles->contains($variationArticle)) {
+            $this->variationArticles[] = $variationArticle;
+            $variationArticle->setFournisseur($this);
         }
 
         return $this;
     }
 
-    public function removeArticle(Article $article): self
+    public function removeVariationArticle(VariationArticle $variationArticle): self
     {
-        if ($this->articles->removeElement($article)) {
-            $article->removeFournisseur($this);
+        if ($this->variationArticles->removeElement($variationArticle)) {
+            // set the owning side to null (unless already changed)
+            if ($variationArticle->getFournisseur() === $this) {
+                $variationArticle->setFournisseur(null);
+            }
         }
 
         return $this;

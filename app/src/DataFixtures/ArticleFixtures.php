@@ -5,8 +5,8 @@ namespace App\DataFixtures;
 
 use App\Entity\Article;
 use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
-use App\DataFixtures\CategorieFixtures;
 
 class ArticleFixtures extends Fixture
 {
@@ -22,5 +22,7 @@ class ArticleFixtures extends Fixture
         }
         $manager->flush();
     }
+
+
 
 }

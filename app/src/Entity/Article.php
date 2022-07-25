@@ -36,11 +36,6 @@ class Article
     #[ORM\Column(type: 'date', nullable: true)]
     private $when_deleted;
 
-    #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    private $taille;
-
-    #[ORM\ManyToMany(targetEntity: Fournisseur::class, inversedBy: 'articles')]
-    private $fournisseur;
 
     #[ORM\ManyToMany(targetEntity: Categorie::class, inversedBy: 'articles')]
     private $categorie;
@@ -48,11 +43,14 @@ class Article
     #[ORM\ManyToMany(targetEntity: Commande::class, mappedBy: 'article')]
     private $commandes;
 
+    #[ORM\OneToMany(mappedBy: 'article', targetEntity: VariationArticle::class)]
+    private $variation;
+
     public function __construct()
     {
-        $this->fournisseur = new ArrayCollection();
         $this->categorie = new ArrayCollection();
         $this->commandes = new ArrayCollection();
+        $this->variation = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -144,42 +142,6 @@ class Article
         return $this;
     }
 
-    public function getTaille(): ?string
-    {
-        return $this->taille;
-    }
-
-    public function setTaille(?string $taille): self
-    {
-        $this->taille = $taille;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Fournisseur>
-     */
-    public function getFournisseur(): Collection
-    {
-        return $this->fournisseur;
-    }
-
-    public function addFournisseur(Fournisseur $fournisseur): self
-    {
-        if (!$this->fournisseur->contains($fournisseur)) {
-            $this->fournisseur[] = $fournisseur;
-        }
-
-        return $this;
-    }
-
-    public function removeFournisseur(Fournisseur $fournisseur): self
-    {
-        $this->fournisseur->removeElement($fournisseur);
-
-        return $this;
-    }
-
     /**
      * @return Collection<int, Categorie>
      */
@@ -226,6 +188,36 @@ class Article
     {
         if ($this->commandes->removeElement($commande)) {
             $commande->removeArticle($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, VariationArticle>
+     */
+    public function getVariation(): Collection
+    {
+        return $this->variation;
+    }
+
+    public function addVariation(VariationArticle $variation): self
+    {
+        if (!$this->variation->contains($variation)) {
+            $this->variation[] = $variation;
+            $variation->setArticle($this);
+        }
+
+        return $this;
+    }
+
+    public function removeVariation(VariationArticle $variation): self
+    {
+        if ($this->variation->removeElement($variation)) {
+            // set the owning side to null (unless already changed)
+            if ($variation->getArticle() === $this) {
+                $variation->setArticle(null);
+            }
         }
 
         return $this;

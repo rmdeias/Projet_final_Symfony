@@ -30,7 +30,6 @@ class UserFixtures extends Fixture
             $user->setPrenom("userPrenom" . $count);
             $user->setEmail("mail".$count."@gmail.com");
             $user->setPassword( $hashedPassword);
-            $user->setRole('Admin');
             $user->setRestriction(false);
             $user->setAdresse("Adresse" . $count);
             $user->setNumeroRue(11);
