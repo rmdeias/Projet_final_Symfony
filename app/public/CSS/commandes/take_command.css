@@ -1,0 +1,17 @@
+.take_command_admin{
+    margin: 30px 5px;
+}
+
+.take_command_admin .header-take-command{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.take_command_admin form{
+    margin-top: 50px;
+}
+
+.take_command_admin form .content{
+    padding-bottom: 20px;
+}
