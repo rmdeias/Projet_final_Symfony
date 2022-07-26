@@ -1,0 +1,47 @@
+{% extends 'Modules/base/base_admin.html.twig' %}
+
+{% block stylesheets %}
+
+  {{ parent() }}
+
+   <link rel="stylesheet" type="text/css" href="{{ asset('CSS/fournisseurs/home_fournisseurs.css') }}">
+
+{% endblock %}
+
+{% block content %}
+
+    <div class="home_fournisseurs_admin">
+
+        <div class="header-fournisseurs">
+            <h1>Gestion des fournisseurs</h1>
+            <button type="button" class="btn btn-primary">Créer un fournisseur</button>
+        </div>
+
+        <table class="table text-center">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Nom</th>
+                    <th>Supprimé ?</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Fournisseur 1</td>
+                    <td>False</td>
+                    <td>
+                        <a class="btn btn-info" href="#"><i class="fas fa-pen-fancy"></i></a>
+                        <a class="delete btn btn-danger " href="#"><i class="fas fa-trash"></i></a>
+                    </td>
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+
+{% endblock %}

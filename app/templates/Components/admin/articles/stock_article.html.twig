@@ -1,0 +1,57 @@
+{% extends 'Modules/base/base_admin.html.twig' %}
+
+{% block stylesheets %}
+
+  {{ parent() }}
+
+   <link rel="stylesheet" type="text/css" href="{{ asset('CSS/articles/stock_article.css') }}">
+
+{% endblock %}
+
+{% block content %}
+
+    <div class="stock_article_admin">
+
+        <div class="header-stock-article">
+            <h1>Gestion des stocks</h1>
+            <button type="button" class="btn btn-danger">Retour</button>
+        </div>
+
+        <table class="table text-center">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Nom</th>
+                    <th>Taille</th>
+                    <th>Prix</th>
+                    <th>Supprimé ?</th>
+                    <th>Quantité</th>
+                    <th>Ajouter du stock</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Article 1</td>
+                    <td>M</td>
+                    <td>12.80€</td>
+                    <td>False</td>
+                    <td>35</td>
+                    <td>
+                        <form action ="#" method="post" enctype="multipart/form-data">
+                            <div class="content">
+                                <input class="form-control" type="number" id="quantity" name="qu antity" min="0" value="0">
+                                <button type="submit" class="btn btn-success">Ajouter</button>
+                            </div>
+                        </form>
+                    </td>
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+
+{% endblock %}

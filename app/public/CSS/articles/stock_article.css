@@ -1,0 +1,22 @@
+.stock_article_admin{
+    margin: 30px 5px;
+}
+
+.stock_article_admin .header-stock-article{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.stock_article_admin .table{
+    margin-top: 50px;
+}
+
+.stock_article_admin form .content{
+    display: flex;
+    flex-direction: row;
+}
+
+.stock_article_admin form .content input {
+    margin-right: 10px;
+}
