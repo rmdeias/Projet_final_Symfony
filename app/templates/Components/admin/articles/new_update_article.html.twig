@@ -1,0 +1,90 @@
+{% extends 'Modules/base/base_admin.html.twig' %}
+
+{% block stylesheets %}
+
+  {{ parent() }}
+
+   <link rel="stylesheet" type="text/css" href="{{ asset('CSS/articles/new_update_article.css') }}">
+
+{% endblock %}
+
+{% block content %}
+
+    <div class="new_update_articles_admin">
+
+        <div class="header-new-update-articles">
+            <h1>Créer un articles</h1>
+            <button type="button" class="btn btn-primary">Gérer le stock</button>
+        </div>
+
+        <form action ="#" method="post" enctype="multipart/form-data">
+        
+            <div class="form-row col-12">
+
+                <div class="content">
+                    <label>Titre de l'article: </label>
+                    <input  class="form-control" type="text" id="title" name="title"> 
+                </div>               
+
+                <div class="content">
+                    <label>Prix:</label>
+                    <input class="form-control" type="number" id="price" name="price" min="0">
+                </div>
+
+                <div class="content">
+                    <label>Description: </label>
+                    <textarea class="form-control " type="text" id="description" name="description"></textarea>
+                </div>
+
+                <div class="content">
+                    <label>Image principal: </label>
+                    <input class="form-control" type="file" id="image" name="image">
+                </div>
+                
+                <div class="content">
+                    <label>Image annexe: </label>
+                    <input class="form-control" type="file" id="imageAlt" name="imageAlt">
+                </div>
+                
+                <div class="content">
+                    <label>Taille: </label>
+                    <input class="form-control" type="text" id="size" name="size" value="M">
+                </div>
+                
+                <div class="content">
+                    <label>Promo: </label>
+                    <input class="form-control" type="number" id="sold" name="sold" value="%" min="0">
+                </div>
+            
+                <div class="content">
+                    <label>Catégories:</label>
+                    <select name="category" id="cateogry" class="form-control">
+                        <option value="">Selectionner une / des catégories</option>
+                        <option value="Catégorie 1">Catégorie 1</option>
+                        <option value="Catégorie 2">Catégorie 2</option>
+                        <option value="Catégorie 3">Catégorie 3</option>
+                        <option value="Catégorie 4">Catégorie 4</option>
+                    </select>
+                </div>
+
+                <div class="content">
+                    <label>Fournisseur:</label>
+                    <select name="vendor" id="vendor" class="form-control">
+                        <option value="">Selectionner un fournisseur</option>
+                        <option value="Fournisseur 1">Fournisseur 1</option>
+                        <option value="Fournisseur 2">Fournisseur 2</option>
+                        <option value="Fournisseur 3">Fournisseur 3</option>
+                        <option value="Fournisseur 4">Fournisseur 4</option>
+                    </select>
+                </div>
+                    
+            </div>
+
+            <button class= "btn btn-success mt-5 mb-5" type= "submit">Valider</button>
+        
+        </form>
+
+    </div>
+
+
+{% endblock %}

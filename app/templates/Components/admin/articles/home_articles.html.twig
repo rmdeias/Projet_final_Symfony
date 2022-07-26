@@ -1,0 +1,55 @@
+{% extends 'Modules/base/base_admin.html.twig' %}
+
+{% block stylesheets %}
+
+  {{ parent() }}
+
+   <link rel="stylesheet" type="text/css" href="{{ asset('CSS/articles/home_articles.css') }}">
+
+{% endblock %}
+
+{% block content %}
+
+    <div class="home_articles_admin">
+
+        <div class="header-articles">
+            <h1>Gestion des articles</h1>
+            <button type="button" class="btn btn-primary">Créer un articles</button>
+        </div>
+
+        <table class="table text-center">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Nom</th>
+                    <th>Taille</th>
+                    <th>Prix</th>
+                    <th>Catégories</th>
+                    <th>Supprimé ?</th>
+                    <th>Quantité</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Article 1</td>
+                    <td>M</td>
+                    <td>12.80€</td>
+                    <td><a href="#">Catégorie 1</a> - <a href="#">Catégorie 2</a></td>
+                    <td>False</td>
+                    <td>35<a href="#"><i class="fas fa-plus"></i></a></td>
+                    <td>
+                        <a class="btn btn-info" href="#"><i class="fas fa-pen-fancy"></i></a>
+                        <a class="delete btn btn-danger " href="#"><i class="fas fa-trash"></i></a>
+                    </td>
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+
+{% endblock %}

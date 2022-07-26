@@ -1,0 +1,45 @@
+{% extends 'Modules/base/base_admin.html.twig' %}
+
+{% block stylesheets %}
+
+  {{ parent() }}
+
+   <link rel="stylesheet" type="text/css" href="{{ asset('CSS/category/home_category.css') }}">
+
+{% endblock %}
+
+{% block content %}
+
+    <div class="home_category_admin">
+
+        <div class="header-category">
+            <h1>Gestion des articles</h1>
+            <button type="button" class="btn btn-primary">Créer une catégorie</button>
+        </div>
+
+        <table class="table text-center">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Nom</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Catégorie 1</td>
+                    <td>
+                        <a class="btn btn-info" href="#"><i class="fas fa-pen-fancy"></i></a>
+                        <a class="delete btn btn-danger " href="#"><i class="fas fa-trash"></i></a>
+                    </td>
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+
+{% endblock %}

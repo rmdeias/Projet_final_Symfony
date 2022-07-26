@@ -1,0 +1,14 @@
+
+.home_category_admin{
+    margin: 30px 5px;
+}
+
+.home_category_admin .header-category{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.home_category_admin .table{
+    margin-top: 50px;
+}

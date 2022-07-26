@@ -1,0 +1,38 @@
+{% extends 'Modules/base/base_admin.html.twig' %}
+
+{% block stylesheets %}
+
+  {{ parent() }}
+
+   <link rel="stylesheet" type="text/css" href="{{ asset('CSS/category/new_update_category.css') }}">
+
+{% endblock %}
+
+{% block content %}
+
+    <div class="new_update_category_admin">
+
+        <div class="header-new-update-category">
+            <h1>Créer une catégorie</h1>
+            <button type="button" class="btn btn-danger">Retour</button>
+        </div>
+
+        <form action ="#" method="post" enctype="multipart/form-data">
+        
+            <div class="form-row col-12">
+
+                <div class="content">
+                    <label>Titre de la catégorie: </label>
+                    <input  class="form-control" type="text" id="title" name="title"> 
+                </div>               
+     
+            </div>
+
+            <button class= "btn btn-success mt-5 mb-5" type= "submit">Valider</button>
+        
+        </form>
+
+    </div>
+
+
+{% endblock %}

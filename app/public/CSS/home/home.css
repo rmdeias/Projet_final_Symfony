@@ -1,0 +1,23 @@
+
+.home_admin_card{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.home_admin_card .link{
+    margin: 50px 0px;
+    padding: 0px 30px;
+}
+
+.home_admin_card .card{
+    height: 200px;
+}
+
+.home_admin_card .card-body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

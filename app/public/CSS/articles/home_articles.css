@@ -1,0 +1,14 @@
+
+.home_articles_admin{
+    margin: 30px 5px;
+}
+
+.home_articles_admin .header-articles{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.home_articles_admin .table{
+    margin-top: 50px;
+}
