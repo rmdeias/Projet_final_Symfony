@@ -1,14 +1,14 @@
 
-.home_articles_admin{
+.home_admin{
     margin: 30px 5px;
 }
 
-.home_articles_admin .header-articles{
+.home_admin .header-common{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
 }
 
-.home_articles_admin .table{
+.home_admin .table{
     margin-top: 50px;
 }

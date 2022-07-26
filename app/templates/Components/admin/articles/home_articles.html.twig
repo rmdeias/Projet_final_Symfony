@@ -1,18 +1,10 @@
 {% extends 'Modules/base/base_admin.html.twig' %}
 
-{% block stylesheets %}
-
-  {{ parent() }}
-
-   <link rel="stylesheet" type="text/css" href="{{ asset('CSS/articles/home_articles.css') }}">
-
-{% endblock %}
-
 {% block content %}
 
-    <div class="home_articles_admin">
+    <div class="home_admin">
 
-        <div class="header-articles">
+        <div class="header-common">
             <h1>Gestion des articles</h1>
             <button type="button" class="btn btn-primary">Créer un articles</button>
         </div>

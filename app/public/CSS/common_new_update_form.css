@@ -1,17 +1,17 @@
-.new_update_user_admin{
+.new_update_admin{
     margin: 30px 5px;
 }
 
-.new_update_user_admin .header-new-update-user{
+.new_update_admin .header-new-update{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
 }
 
-.new_update_user_admin form{
+.new_update_admin form{
     margin-top: 50px;
 }
 
-.new_update_user_admin form .content{
+.new_update_admin form .content{
     padding-bottom: 20px;
 }
