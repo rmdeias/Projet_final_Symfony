@@ -11,6 +11,6 @@ class MakeController extends AbstractController
     #[Route('/', name: 'app_make')]
     public function index()
     {
-        return $this->render('Components/admin/articles/new_update_article.html.twig');
+        return $this->render('Components/admin/paiement/new_update_paiement.html.twig');
     }
 }
