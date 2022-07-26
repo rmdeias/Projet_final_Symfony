@@ -1,0 +1,10 @@
+.home-client{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.home-client .card .card-body{
+    display: flex;
+    flex-direction: row;
+}

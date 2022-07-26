@@ -1,0 +1,17 @@
+.panier_client{
+    margin: 30px 5px;
+}
+
+.panier_client .header-client{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.panier_client form{
+    margin-top: 50px;
+}
+
+.panier_client form .content{
+    padding-bottom: 20px;
+}
