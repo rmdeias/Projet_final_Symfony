@@ -29,43 +29,43 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $password;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private $nom;
+    private $name;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private $prenom;
+    private $firstName;
 
     #[ORM\Column(type: 'boolean')]
     private $restriction;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private $code_postal;
+    private $zipCode;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private $ville;
+    private $city;
 
     #[ORM\Column(type: 'integer')]
-    private $numero_rue;
+    private $streetNumber;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    private $adresse_complementaire;
+    private $additionalAddress;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private $adresse;
+    private $address;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private $pays;
+    private $country;
 
-    #[ORM\ManyToMany(targetEntity: MoyenPaiement::class, inversedBy: 'users')]
-    private $moyen_paiement;
+    #[ORM\ManyToMany(targetEntity: PaymentMethod::class, inversedBy: 'users')]
+    private $payment_method;
 
-    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Commande::class)]
-    private $commandes;
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: CustomerOrder::class)]
+    private $customerOrders;
 
     public function __construct()
     {
         $this->restriction = false;
-        $this->moyen_paiement = new ArrayCollection();
-        $this->commandes = new ArrayCollection();
+        $this->payment_method = new ArrayCollection();
+        $this->customerOrders = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -138,26 +138,26 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         // $this->plainPassword = null;
     }
 
-    public function getNom(): ?string
+    public function getName(): ?string
     {
-        return $this->nom;
+        return $this->name;
     }
 
-    public function setNom(string $nom): self
+    public function setName(string $name): self
     {
-        $this->nom = $nom;
+        $this->name = $name;
 
         return $this;
     }
 
-    public function getPrenom(): ?string
+    public function getFirstName(): ?string
     {
-        return $this->prenom;
+        return $this->firstName;
     }
 
-    public function setPrenom(string $prenom): self
+    public function setFirstName(string $firstName): self
     {
-        $this->prenom = $prenom;
+        $this->firstName = $firstName;
 
         return $this;
     }
@@ -174,126 +174,126 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getCodePostal(): ?string
+    public function getZipCode(): ?string
     {
-        return $this->code_postal;
+        return $this->zipCode;
     }
 
-    public function setCodePostal(string $code_postal): self
+    public function setZipCode(string $zipCode): self
     {
-        $this->code_postal = $code_postal;
+        $this->zipCode = $zipCode;
 
         return $this;
     }
 
-    public function getVille(): ?string
+    public function getCity(): ?string
     {
-        return $this->ville;
+        return $this->city;
     }
 
-    public function setVille(string $ville): self
+    public function setCity(string $city): self
     {
-        $this->ville = $ville;
+        $this->city = $city;
 
         return $this;
     }
 
-    public function getNumeroRue(): ?int
+    public function getStreetNumber(): ?int
     {
-        return $this->numero_rue;
+        return $this->streetNumber;
     }
 
-    public function setNumeroRue(int $numero_rue): self
+    public function setStreetNumber(int $streetNumber): self
     {
-        $this->numero_rue = $numero_rue;
+        $this->streetNumber = $streetNumber;
 
         return $this;
     }
 
-    public function getAdresseComplementaire(): ?string
+    public function getAdditionalAddress(): ?string
     {
-        return $this->adresse_complementaire;
+        return $this->additionalAddress;
     }
 
-    public function setAdresseComplementaire(?string $adresse_complementaire): self
+    public function setAdditionalAddress(?string $additionalAddress): self
     {
-        $this->adresse_complementaire = $adresse_complementaire;
+        $this->additionalAddress = $additionalAddress;
 
         return $this;
     }
 
-    public function getAdresse(): ?string
+    public function getAddress(): ?string
     {
-        return $this->adresse;
+        return $this->address;
     }
 
-    public function setAdresse(string $adresse): self
+    public function setAddress(string $address): self
     {
-        $this->adresse = $adresse;
+        $this->address = $address;
 
         return $this;
     }
 
-    public function getPays(): ?string
+    public function getCountry(): ?string
     {
-        return $this->pays;
+        return $this->country;
     }
 
-    public function setPays(string $pays): self
+    public function setCountry(string $country): self
     {
-        $this->pays = $pays;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, MoyenPaiement>
-     */
-    public function getMoyenPaiement(): Collection
-    {
-        return $this->moyen_paiement;
-    }
-
-    public function addMoyenPaiement(MoyenPaiement $moyenPaiement): self
-    {
-        if (!$this->moyen_paiement->contains($moyenPaiement)) {
-            $this->moyen_paiement[] = $moyenPaiement;
-        }
-
-        return $this;
-    }
-
-    public function removeMoyenPaiement(MoyenPaiement $moyenPaiement): self
-    {
-        $this->moyen_paiement->removeElement($moyenPaiement);
+        $this->country = $country;
 
         return $this;
     }
 
     /**
-     * @return Collection<int, Commande>
+     * @return Collection<int, PaymentMethod>
      */
-    public function getCommandes(): Collection
+    public function getPaymentMethod(): Collection
     {
-        return $this->commandes;
+        return $this->payment_method;
     }
 
-    public function addCommande(Commande $commande): self
+    public function addPaymentMethod(PaymentMethod $paymentMethod): self
     {
-        if (!$this->commandes->contains($commande)) {
-            $this->commandes[] = $commande;
-            $commande->setUser($this);
+        if (!$this->payment_method->contains($paymentMethod)) {
+            $this->payment_method[] = $paymentMethod;
         }
 
         return $this;
     }
 
-    public function removeCommande(Commande $commande): self
+    public function removePaymentMethod(PaymentMethod $paymentMethod): self
     {
-        if ($this->commandes->removeElement($commande)) {
+        $this->payment_method->removeElement($paymentMethod);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, CustomerOrder>
+     */
+    public function getCustomerOrders(): Collection
+    {
+        return $this->customerOrders;
+    }
+
+    public function addCustomerOrder(CustomerOrder $customerOrder): self
+    {
+        if (!$this->customerOrders->contains($customerOrder)) {
+            $this->customerOrders[] = $customerOrder;
+            $customerOrder->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCustomerOrder(CustomerOrder $customerOrder): self
+    {
+        if ($this->customerOrders->removeElement($customerOrder)) {
             // set the owning side to null (unless already changed)
-            if ($commande->getUser() === $this) {
-                $commande->setUser(null);
+            if ($customerOrder->getUser() === $this) {
+                $customerOrder->setUser(null);
             }
         }
 

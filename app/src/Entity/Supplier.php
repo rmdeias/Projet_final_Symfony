@@ -2,13 +2,13 @@
 
 namespace App\Entity;
 
-use App\Repository\FournisseurRepository;
+use App\Repository\SupplierRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: FournisseurRepository::class)]
-class Fournisseur
+#[ORM\Entity(repositoryClass: SupplierRepository::class)]
+class Supplier
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -27,7 +27,7 @@ class Fournisseur
     #[ORM\Column(type: 'string', length: 255)]
     private $address;
 
-    #[ORM\OneToMany(mappedBy: 'fournisseur', targetEntity: VariationArticle::class)]
+    #[ORM\OneToMany(mappedBy: 'supplier', targetEntity: ArticleVariation::class)]
     private $variationArticles;
 
     public function __construct()
@@ -90,29 +90,29 @@ class Fournisseur
     }
 
     /**
-     * @return Collection<int, VariationArticle>
+     * @return Collection<int, ArticleVariation>
      */
-    public function getVariationArticles(): Collection
+    public function getArticleVariations(): Collection
     {
         return $this->variationArticles;
     }
 
-    public function addVariationArticle(VariationArticle $variationArticle): self
+    public function addArticleVariation(ArticleVariation $variationArticle): self
     {
         if (!$this->variationArticles->contains($variationArticle)) {
             $this->variationArticles[] = $variationArticle;
-            $variationArticle->setFournisseur($this);
+            $variationArticle->setSupplier($this);
         }
 
         return $this;
     }
 
-    public function removeVariationArticle(VariationArticle $variationArticle): self
+    public function removeArticleVariation(ArticleVariation $variationArticle): self
     {
         if ($this->variationArticles->removeElement($variationArticle)) {
             // set the owning side to null (unless already changed)
-            if ($variationArticle->getFournisseur() === $this) {
-                $variationArticle->setFournisseur(null);
+            if ($variationArticle->getSupplier() === $this) {
+                $variationArticle->setSupplier(null);
             }
         }
 
