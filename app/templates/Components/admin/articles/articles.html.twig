@@ -2,7 +2,7 @@
 
 {% block stylesheets %}
 
-{{ parent() }}
+    {{ parent() }}
 
    <link rel="stylesheet" type="text/css" href="{{ asset('CSS/admin/articles/list_articles.css') }}">
 
@@ -14,7 +14,7 @@
 
         <div class="header-common">
             <h1>Gestion des articles</h1>
-            <button type="button" class="btn btn-primary">Créer un articles</button>
+            <a class="btn btn-primary" href="{{ path('admin_article_new') }}">Créer un articles</a>
         </div>
 
         <table class="table text-center">
@@ -31,34 +31,36 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>Article 1</td>
-                    <td>M</td>
-                    <td>12.80€</td>
-                    <td><a href="#">Catégorie 1</a> - <a href="#">Catégorie 2</a></td>
-                    <td>False</td>
-                    <td>35<a href="#"><i class="fas fa-plus"></i></a></td>
-                    <td>
-                        <a class="btn btn-info" href="#"><i class="fas fa-pen-fancy"></i></a>
-                        <a class="delete btn btn-danger " href="#"><i class="fas fa-trash"></i></a>
-                    </td>
-                </tr>
-
+               {% for variation_a in v_articles %}
+                    <tr>
+                        <td>{{variation_a.id}}</td>
+                        <td>{{variation_a.article.libelle}}</td>
+                        <td>{{variation_a.size}}</td>
+                        <td>{{variation_a.article.prix}}</td>
+                        <td>
+                            {% if variation_a.article.categorie %}
+                                {% for category in variation_a.article.categorie %}
+                                    <a href="#">{{category.libelle}}</a> -
+                                {% endfor %}
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if variation_a.article.whenDeleted is null %}
+                                <i class="fas fa-times"></i>
+                            {% else %}
+                                {{ variation_a.article.whenDeleted|date('d/m/Y') }}
+                            {% endif %}
+                        </td>
+                        <td>{{variation_a.quantity}}<a href="{{ path('admin_stock_variation_article', {id: variation_a.id}) }}"><i class="fas fa-plus"></i></a></td>
+                        <td>
+                            {# A voir si ce n'est pas variation article au lieu de article pour l'update et delete #}
+                            <a class="btn btn-info" href="{{ path('admin_update_article', {id: variation_a.article.id}) }}"><i class="fas fa-pen-fancy"></i></a>
+                            <a class="delete btn btn-danger " href="{{ path('admin_delete_article', {id: variation_a.article.id}) }}"><i class="fas fa-trash"></i></a>
+                        </td>
+                    </tr>
+                {% endfor %}
             </tbody>
-
         </table>
-        <div class="form-size">
-            <form class="col-2" action ="#" method="post" enctype="multipart/form-data">
-                <div class="content">
-                    <label>Créer une nouvelle taille:</label>
-                    <div class="d-flex">
-                        <input class="form-control" type="text" placeholder="Ajouter une nouvelle taille" id="size" name="size">
-                        <button type="submit" class="btn btn-success">Valider</button> 
-                    </div>
-                </div>
-            </form>
-        </div>
         
     </div>
 

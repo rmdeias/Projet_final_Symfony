@@ -17,28 +17,31 @@
                 <th>Email</th>
                 <th>Article(s)</th>
                 <th>Date</th>
-                <th>Status</th>
+                <th>Statut</th>
                 <th>Action</th>
 
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <td>1</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-
-                <td>
-                    <a class="btn btn-info" href="#"><i class="fas fa-pen-fancy"></i></a>
-                    <a class="delete btn btn-danger " href="#"><i class="fas fa-trash"></i></a>
-                </td>
-            </tr>
-
+                {% for order in orders %}
+                    <tr>
+                        <td>{{ order.id }}</td>
+                        <td>{{ order.user.nom }}</td>
+                        <td>{{ order.user.email }}</td>
+                        <td>
+                            {% for article in order.article %}
+                                <a href="{{ path('admin_update_article', {id: article.id}) }}">{{article.libelle}}</a> -
+                            {% endfor %}
+                        </td>
+                        <td>{{ order.date|date('d/m/Y') }}</td>
+                        <td>{{ order.statut }}</td>
+                        <td>
+                            <a class="btn btn-info" href="#"><i class="fas fa-pen-fancy"></i></a>
+                            <a class="delete btn btn-danger " href="#"><i class="fas fa-trash"></i></a>
+                        </td>
+                    </tr>
+                {% endfor %}
             </tbody>
-
         </table>
 
     </div>

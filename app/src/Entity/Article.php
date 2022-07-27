@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\ArticleRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ArticleRepository::class)]
@@ -19,6 +20,7 @@ class Article
     private $libelle;
 
     #[ORM\Column(type: 'integer')]
+    #[Assert\PositiveOrZero]
     private $prix;
 
     #[ORM\Column(type: 'text', nullable: true)]
@@ -31,11 +33,11 @@ class Article
     private $img_alt;
 
     #[ORM\Column(type: 'integer', nullable: true)]
+    #[Assert\PositiveOrZero]
     private $promo;
 
     #[ORM\Column(type: 'date', nullable: true)]
     private $when_deleted;
-
 
     #[ORM\ManyToMany(targetEntity: Categorie::class, inversedBy: 'articles')]
     private $categorie;

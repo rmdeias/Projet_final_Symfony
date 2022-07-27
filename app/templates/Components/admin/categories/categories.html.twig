@@ -19,14 +19,16 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>Catégorie 1</td>
-                    <td>
-                        <a class="btn btn-info" href="#"><i class="fas fa-pen-fancy"></i></a>
-                        <a class="delete btn btn-danger " href="#"><i class="fas fa-trash"></i></a>
-                    </td>
-                </tr>
+                {% for category in categories %}
+                    <tr>
+                        <td>{{category.id}}</td>
+                        <td>{{category.libelle}}</td>
+                        <td>
+                            <a class="btn btn-info" href="{{ path('admin_category_new') }}"><i class="fas fa-pen-fancy"></i></a>
+                            <a class="delete btn btn-danger " href="{{ path('admin_category_delete') }}"><i class="fas fa-trash"></i></a>
+                        </td>
+                    </tr>
+                {% endfor %}
 
             </tbody>
 

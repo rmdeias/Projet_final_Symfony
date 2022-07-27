@@ -8,10 +8,13 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Entity(repositoryClass: VariationArticleRepository::class)]
 class VariationArticle
 {
+    const SIZE_XXS = 'XXS';
+    const SIZE_XS = 'XS';
     const SIZE_S = 'S';
     const SIZE_M = 'M';
     const SIZE_L = 'L';
     const SIZE_XL = 'XL';
+    const SIZE_XXL = 'XXL';
 
     #[ORM\Id]
     #[ORM\GeneratedValue]
