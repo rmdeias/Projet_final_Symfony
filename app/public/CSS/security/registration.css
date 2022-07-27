@@ -1,0 +1,9 @@
+main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+main form .content{
+    padding-bottom: 10px;
+}
