@@ -20,6 +20,7 @@ class Article
     private $libelle;
 
     #[ORM\Column(type: 'integer')]
+    #[Assert\PositiveOrZero]
     private $price;
 
     #[ORM\Column(type: 'text', nullable: true)]

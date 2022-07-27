@@ -7,6 +7,7 @@ use App\Entity\VariationArticle;
 use App\Form\ArticleType;
 use App\Form\UpdateArticleType;
 use App\Repository\ArticleRepository;
+use App\Repository\ArticleVariationRepository;
 use Symfony\Component\HttpFoundation\Request;
 use App\Repository\VariationArticleRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -16,7 +17,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class ArticlesController extends AbstractController
 {
     #[Route('/', name: 'admin_articles')]
-    public function list(VariationArticleRepository $variationArticleRepository)
+    public function list(ArticleVariationRepository $variationArticleRepository)
     {
         // !!! On récupère les variations d'articles
         $v_articles = $variationArticleRepository->findAll();
@@ -63,7 +64,7 @@ class ArticlesController extends AbstractController
     }
 
     #[Route('/stock/{id}', name: 'admin_stock_variation_article')]
-    public function stock(VariationArticle $variationArticle)
+    public function stock(ArticleVariationRepository $variationArticle)
     {
         return $this->render('Components/admin/articles/stock_article.html.twig', [
             'variationArticle' => $variationArticle
