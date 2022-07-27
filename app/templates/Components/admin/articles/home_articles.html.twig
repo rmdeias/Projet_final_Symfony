@@ -1,5 +1,13 @@
 {% extends 'layout_admin/base_admin.html.twig' %}
 
+{% block stylesheets %}
+
+{{ parent() }}
+
+   <link rel="stylesheet" type="text/css" href="{{ asset('CSS/admin/articles/list_articles.css') }}">
+
+{% endblock %}
+
 {% block content %}
 
     <div class="home_admin">
@@ -40,7 +48,18 @@
             </tbody>
 
         </table>
-
+        <div class="form-size">
+            <form class="col-2" action ="#" method="post" enctype="multipart/form-data">
+                <div class="content">
+                    <label>Créer une nouvelle taille:</label>
+                    <div class="d-flex">
+                        <input class="form-control" type="text" placeholder="Ajouter une nouvelle taille" id="size" name="size">
+                        <button type="submit" class="btn btn-success">Valider</button> 
+                    </div>
+                </div>
+            </form>
+        </div>
+        
     </div>
 
 
