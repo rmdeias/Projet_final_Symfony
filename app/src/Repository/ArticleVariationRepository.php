@@ -2,26 +2,26 @@
 
 namespace App\Repository;
 
-use App\Entity\VariationArticle;
+use App\Entity\ArticleVariation;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<VariationArticle>
+ * @extends ServiceEntityRepository<ArticleVariation>
  *
- * @method VariationArticle|null find($id, $lockMode = null, $lockVersion = null)
- * @method VariationArticle|null findOneBy(array $criteria, array $orderBy = null)
- * @method VariationArticle[]    findAll()
- * @method VariationArticle[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method ArticleVariation|null find($id, $lockMode = null, $lockVersion = null)
+ * @method ArticleVariation|null findOneBy(array $criteria, array $orderBy = null)
+ * @method ArticleVariation[]    findAll()
+ * @method ArticleVariation[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class VariationArticleRepository extends ServiceEntityRepository
+class ArticleVariationRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, VariationArticle::class);
+        parent::__construct($registry, ArticleVariation::class);
     }
 
-    public function add(VariationArticle $entity, bool $flush = false): void
+    public function add(ArticleVariation $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);
 
@@ -30,7 +30,7 @@ class VariationArticleRepository extends ServiceEntityRepository
         }
     }
 
-    public function remove(VariationArticle $entity, bool $flush = false): void
+    public function remove(ArticleVariation $entity, bool $flush = false): void
     {
         $this->getEntityManager()->remove($entity);
 
@@ -40,7 +40,7 @@ class VariationArticleRepository extends ServiceEntityRepository
     }
 
 //    /**
-//     * @return VariationArticle[] Returns an array of VariationArticle objects
+//     * @return ArticleVariation[] Returns an array of ArticleVariation objects
 //     */
 //    public function findByExampleField($value): array
 //    {
@@ -54,7 +54,7 @@ class VariationArticleRepository extends ServiceEntityRepository
 //        ;
 //    }
 
-//    public function findOneBySomeField($value): ?VariationArticle
+//    public function findOneBySomeField($value): ?ArticleVariation
 //    {
 //        return $this->createQueryBuilder('v')
 //            ->andWhere('v.exampleField = :val')

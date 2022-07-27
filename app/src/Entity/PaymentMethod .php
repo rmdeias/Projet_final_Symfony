@@ -2,13 +2,14 @@
 
 namespace App\Entity;
 
-use App\Repository\MoyenPaiementRepository;
+use App\Repository\PaymentMethodRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: MoyenPaiementRepository::class)]
-class MoyenPaiement
+#[ORM\Entity(repositoryClass: PaymentMethodRepository::class)]
+class PaymentMethod
+
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -18,7 +19,7 @@ class MoyenPaiement
     #[ORM\Column(type: 'string', length: 255)]
     private $type;
 
-    #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'moyen_paiement')]
+    #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'payment_method')]
     private $users;
 
     public function __construct()
@@ -55,7 +56,7 @@ class MoyenPaiement
     {
         if (!$this->users->contains($user)) {
             $this->users[] = $user;
-            $user->addMoyenPaiement($this);
+            $user->addPaymentMethod($this);
         }
 
         return $this;
@@ -64,7 +65,7 @@ class MoyenPaiement
     public function removeUser(User $user): self
     {
         if ($this->users->removeElement($user)) {
-            $user->removeMoyenPaiement($this);
+            $user->removePaymentMethod($this);
         }
 
         return $this;

@@ -2,11 +2,11 @@
 
 namespace App\Entity;
 
-use App\Repository\VariationArticleRepository;
+use App\Repository\ArticleVariationRepository;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: VariationArticleRepository::class)]
-class VariationArticle
+#[ORM\Entity(repositoryClass: ArticleVariationRepository::class)]
+class ArticleVariation
 {
     const SIZE_S = 'S';
     const SIZE_M = 'M';
@@ -24,8 +24,8 @@ class VariationArticle
     #[ORM\Column(type: 'integer')]
     private $quantity;
 
-    #[ORM\ManyToOne(targetEntity: Fournisseur::class, inversedBy: 'variationArticles')]
-    private $fournisseur;
+    #[ORM\ManyToOne(targetEntity: Supplier::class, inversedBy: 'variationArticles')]
+    private $supplier;
 
     #[ORM\ManyToOne(targetEntity: Article::class, inversedBy: 'variation')]
     private $article;
@@ -59,14 +59,14 @@ class VariationArticle
         return $this;
     }
 
-    public function getFournisseur(): ?Fournisseur
+    public function getSupplier(): ?Supplier
     {
-        return $this->fournisseur;
+        return $this->supplier;
     }
 
-    public function setFournisseur(?Fournisseur $fournisseur): self
+    public function setSupplier(?Supplier $supplier): self
     {
-        $this->fournisseur = $fournisseur;
+        $this->supplier = $supplier;
 
         return $this;
     }

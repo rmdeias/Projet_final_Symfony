@@ -2,13 +2,13 @@
 
 namespace App\Entity;
 
-use App\Repository\CommandeRepository;
+use App\Repository\CustomerOrderRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: CommandeRepository::class)]
-class Commande
+#[ORM\Entity(repositoryClass: CustomerOrderRepository::class)]
+class CustomerOrder
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -21,10 +21,10 @@ class Commande
     #[ORM\Column(type: 'date')]
     private $date;
 
-    #[ORM\ManyToMany(targetEntity: Article::class, inversedBy: 'commandes')]
+    #[ORM\ManyToMany(targetEntity: Article::class, inversedBy: 'orders')]
     private $article;
 
-    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'commandes')]
+    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'orders')]
     #[ORM\JoinColumn(nullable: false)]
     private $user;
 

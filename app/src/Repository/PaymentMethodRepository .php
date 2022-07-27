@@ -2,26 +2,26 @@
 
 namespace App\Repository;
 
-use App\Entity\MoyenPaiement;
+use App\Entity\PaymentMethod;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<MoyenPaiement>
+ * @extends ServiceEntityRepository<PaymentMethod>
  *
- * @method MoyenPaiement|null find($id, $lockMode = null, $lockVersion = null)
- * @method MoyenPaiement|null findOneBy(array $criteria, array $orderBy = null)
- * @method MoyenPaiement[]    findAll()
- * @method MoyenPaiement[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method PaymentMethod|null find($id, $lockMode = null, $lockVersion = null)
+ * @method PaymentMethod|null findOneBy(array $criteria, array $orderBy = null)
+ * @method PaymentMethod[]    findAll()
+ * @method PaymentMethod[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class MoyenPaiementRepository extends ServiceEntityRepository
+class PaymentMethodRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, MoyenPaiement::class);
+        parent::__construct($registry, PaymentMethod::class);
     }
 
-    public function add(MoyenPaiement $entity, bool $flush = false): void
+    public function add(PaymentMethod $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);
 
@@ -30,7 +30,7 @@ class MoyenPaiementRepository extends ServiceEntityRepository
         }
     }
 
-    public function remove(MoyenPaiement $entity, bool $flush = false): void
+    public function remove(PaymentMethod $entity, bool $flush = false): void
     {
         $this->getEntityManager()->remove($entity);
 
@@ -40,7 +40,7 @@ class MoyenPaiementRepository extends ServiceEntityRepository
     }
 
 //    /**
-//     * @return MoyenPaiement[] Returns an array of MoyenPaiement objects
+//     * @return PaymentMethod[] Returns an array of PaymentMethod objects
 //     */
 //    public function findByExampleField($value): array
 //    {
@@ -54,7 +54,7 @@ class MoyenPaiementRepository extends ServiceEntityRepository
 //        ;
 //    }
 
-//    public function findOneBySomeField($value): ?MoyenPaiement
+//    public function findOneBySomeField($value): ?PaymentMethod
 //    {
 //        return $this->createQueryBuilder('m')
 //            ->andWhere('m.exampleField = :val')
