@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Article;
+use App\Entity\Category;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -21,7 +22,7 @@ class UpdateArticleType extends AbstractType
             ->add('libelle', TextType::class, [
                 'label' => "Titre de l'article :",
             ])
-            ->add('prix', IntegerType::class, [
+            ->add('price', IntegerType::class, [
                 'label' => "Prix :",
             ])
             ->add('description', TextareaType::class, [
@@ -43,8 +44,8 @@ class UpdateArticleType extends AbstractType
                 'label' => "Supprimé ?",
                 'required' => false,
             ])
-            ->add('categorie', EntityType::class,[
-                'class' => Categorie::class,
+            ->add('category', EntityType::class,[
+                'class' => Category::class,
                 'choice_label' => "libelle",
                 'label' => "Catégories :",
                 'multiple' => true,

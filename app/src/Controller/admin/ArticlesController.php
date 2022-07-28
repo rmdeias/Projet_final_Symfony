@@ -45,9 +45,9 @@ class ArticlesController extends AbstractController
     }
 
     #[Route('/update/{id}', name: 'admin_update_article')]
-    public function update(Article $article, Request $request)
+    public function update($id, ArticleRepository $articleRepository, Request $request)
     {
-        $type = "udpate";
+        $article = $articleRepository->find($id);
 
         $form = $this->createForm(UpdateArticleType::class, $article);
         $form->handleRequest($request);
@@ -58,7 +58,6 @@ class ArticlesController extends AbstractController
 
         return $this->render('Components/admin/articles/new_update_article.html.twig', [
             'article' => $article,
-            'type' => $type,
             'form' => $form->createView()
         ]);
     }

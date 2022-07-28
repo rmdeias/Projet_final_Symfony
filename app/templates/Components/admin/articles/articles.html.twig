@@ -1,4 +1,4 @@
-{% extends 'layout_admin/base_admin.html.twig' %}
+{% extends 'Common/base.html.twig' %}
 
 {% block stylesheets %}
 
@@ -36,10 +36,10 @@
                         <td>{{variation_a.id}}</td>
                         <td>{{variation_a.article.libelle}}</td>
                         <td>{{variation_a.size}}</td>
-                        <td>{{variation_a.article.prix}}</td>
+                        <td>{{variation_a.article.price}}</td>
                         <td>
-                            {% if variation_a.article.categorie %}
-                                {% for category in variation_a.article.categorie %}
+                            {% if variation_a.article.category %}
+                                {% for category in variation_a.article.category %}
                                     <a href="#">{{category.libelle}}</a> -
                                 {% endfor %}
                             {% endif %}

@@ -2,8 +2,8 @@
 
 namespace App\Controller\admin;
 
-use App\Repository\CommandeRepository;
 use App\Repository\CustomerOrderRepository;
+use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 #[Route("/admin/orders")]
@@ -20,11 +20,17 @@ class OrdersController extends AbstractController
         ]);
     }
 
-    #[Route('/take-order', name: 'admin_take_order')]
-    public function takeOrder(CustomerOrderRepository $commandeRepository)
+    #[Route('/take-order/{id}', name: 'admin_take_order')]
+    public function takeOrder($id, UserRepository $userRepository)
     {
-
-        return $this->render('Components/admin/orders/orders.html.twig', [
+        $user = $userRepository->find($id);
+        return $this->render('Components/admin/orders/take_order.html.twig', [
         ]);
+    }
+
+    #[Route('/delete/{id}', name: 'admin_order_delete')]
+    public function delete($id, CustomerOrderRepository $customerOrderRepository)
+    {
+        $order = $customerOrderRepository->find($id);
     }
 }

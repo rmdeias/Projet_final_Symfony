@@ -1,4 +1,4 @@
-{% extends 'layout_admin/base_admin.html.twig' %}
+{% extends 'Common/base.html.twig' %}
 
 {% block stylesheets %}
 
@@ -14,7 +14,7 @@
 
         <div class="header-common">
             <h1>Gestion des utilisateurs</h1>
-            <button type="button" class="btn btn-primary">Créer un utilisateur</button>
+            <a href="{{ path('admin_users_new') }}" class="btn btn-primary">Créer un utilisateur</a>
         </div>
 
         <table class="table text-center">
@@ -24,26 +24,29 @@
                     <th>Prénom - Nom</th>
                     <th>Email</th>
                     <th>Restriction ?</th>
-                    <th>Supprimé ?</th>
                     <th>Rôle(s)</th>
                     <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>Nom Prénom</td>
-                    <td>adresse-mail@gmail.com</td>
-                    <td>False</td>
-                    <td>False</td>
-                    <td>Admin</td>
-                    <td>
-                        <a class="btn btn-info" href="#"><i class="fas fa-pen-fancy"></i></a>
-                        <a class="delete btn btn-danger " href="#"><i class="fas fa-trash"></i></a>
-                        <a href="#">Passer une commande</a>
-                    </td>
-                </tr>
-
+                {% for user in users %}
+                    <tr>
+                        <td>{{ user.id }}</td>
+                        <td>{{ user.firstname }} {{ user.name }}</td>
+                        <td>{{ user.email }}</td>
+                        <td>{{ user.restriction }}</td>
+                        <td>
+                            {% for role in user.roles %}
+                               {{role}}
+                            {% endfor %}
+                        </td>
+                        <td>
+                            <a class="btn btn-info" href="{{ path('admin_users_update', {id: user.id}) }}"><i class="fas fa-pen-fancy"></i></a>
+                            <a class="delete btn btn-danger " href="{{ path('admin_users_delete', {id: user.id}) }}"><i class="fas fa-trash"></i></a>
+                            <a href="{{ path('admin_take_order', {id: user.id}) }}">Passer une commande</a>
+                        </td>
+                    </tr>
+                {% endfor %}
             </tbody>
 
         </table>

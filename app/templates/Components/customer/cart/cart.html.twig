@@ -1,4 +1,4 @@
-{% extends 'layout_customer/base_customer.html.twig' %}
+{% extends 'Common/base.html.twig' %}
 
 {% block stylesheets %}
 
@@ -14,39 +14,29 @@
 
         <div class="header-client">
             <h1>Mon panier</h1>
-            <button type="button" class="btn btn-danger">Retour</button>
+            <a href="{{ path('home_customer') }}" class="btn btn-danger">Retour</a>
         </div>
 
-        <form action ="#" method="post" enctype="multipart/form-data">
+        {{ form_start(form) }}
 
-            <div class="form-row col-12">
+            <div class="content">
+                {{ form_label(form.articles) }}
+                {{ form_widget(form.articles, {'attr' : {'class' : 'form-control'}}) }}
+            </div>
 
-                <div class="content">
-                    <label>Mes Articles: </label>
-                    <select name="article" id="article" class="form-control">
-                        <option value="">Selectionner un / des articles</option>
-                        <option value="article 1">Article 1</option>
-                        <option value="article 2">Article 2</option>
-                        <option value="article 3">Article 3</option>
-                        <option value="article 4">Article 4</option>
-                    </select>
-                </div>
+            <div class="content">
+                {{ form_label(form.date) }}
+                {{ form_widget(form.date, {'attr' : {'class' : 'form-control'}}) }}
+            </div>
 
-                <div class="content">
-                    <label>Date: </label>
-                    <input class="form-control" type="date" id="date" name="date">
-                </div>
-
-                <div class="content">
-                    <label>Statut: </label>
-                    <input class="form-control" type="text" disabled id="status" name="status" value="En attente">
-                </div>
-
+            <div class="content">
+                {{ form_label(form.statut) }}
+                {{ form_widget(form.statut, {'attr' : {'class' : 'form-control'}}) }}
             </div>
 
             <button class= "btn btn-success mt-5 mb-5" type= "submit">Passer commande</button>
 
-        </form>
+        {{ form_end(form) }}
 
     </div>
 

@@ -2,6 +2,7 @@
 
 namespace App\Controller\admin;
 
+use App\Entity\Category;
 use App\Repository\CategorieRepository;
 use App\Repository\CategoryRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -28,9 +29,18 @@ class CategoriesController extends AbstractController
         ]);
     }
 
-    #[Route('/delete', name: 'admin_category_delete')]
-    public function delete(CategoryRepository $categorieRepository)
+    #[Route('/update/{id}', name: 'admin_category_update')]
+    public function update($id, CategoryRepository $categorieRepository)
     {
-        
+        $category = $categorieRepository->find($id);
+        return $this->render('Components/admin/categories/new_update_category.html.twig', [
+            
+        ]);
+    }
+
+    #[Route('/delete/{id}', name: 'admin_category_delete')]
+    public function delete($id, CategoryRepository $categorieRepository)
+    {
+        $category = $categorieRepository->find($id);
     }
 }

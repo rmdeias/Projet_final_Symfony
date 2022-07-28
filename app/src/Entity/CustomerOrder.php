@@ -10,6 +10,12 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Entity(repositoryClass: CustomerOrderRepository::class)]
 class CustomerOrder
 {
+
+    const STATUS_CART = "cart";
+    const STATUS_PENDING = "pending";
+    const STATUS_IN_DELIVERY = "in-delivery";
+    const STATUS_LIVERY = "livery";
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]

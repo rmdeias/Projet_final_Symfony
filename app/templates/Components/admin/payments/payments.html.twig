@@ -1,4 +1,4 @@
-{% extends 'layout_admin/base_admin.html.twig' %}
+{% extends 'Common/base.html.twig' %}
 
 
 {% block content %}
@@ -7,7 +7,7 @@
 
         <div class="header-common">
             <h1>Créer / Modifier un moyen de paiement</h1>
-            <button type="button" class="btn btn-primary">Ajouter un moyen de paiement</button>
+            <a href="{{ path('admin_payments_new') }}" class="btn btn-primary">Ajouter un moyen de paiement</a>
         </div>
 
         <table class="table text-center">
@@ -19,15 +19,16 @@
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <td>1</td>
-                <td>type</td>
-                <td>
-                    <a class="btn btn-info" href="#"><i class="fas fa-pen-fancy"></i></a>
-                    <a class="delete btn btn-danger " href="#"><i class="fas fa-trash"></i></a>
-                </td>
-            </tr>
-
+                {% for payment in payments %}
+                    <tr>
+                        <td>{{ payment.id }}</td>
+                        <td>{{ payment.type }}</td>
+                        <td>
+                            <a class="btn btn-info" href="{{ path('admin_payments_update', {'id' : payment.id}) }}"><i class="fas fa-pen-fancy"></i></a>
+                            <a class="delete btn btn-danger " href="{{ path('admin_payments_delete', {'id' : payment.id}) }}"><i class="fas fa-trash"></i></a>
+                        </td>
+                    </tr>
+                {% endfor %}
             </tbody>
 
         </table>

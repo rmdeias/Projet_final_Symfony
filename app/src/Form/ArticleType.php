@@ -3,8 +3,8 @@
 namespace App\Form;
 
 use App\Entity\Article;
-use App\Entity\Categorie; 
-
+use App\Entity\Categorie;
+use App\Entity\Category;
 use Doctrine\DBAL\Types\DateType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -23,7 +23,7 @@ class ArticleType extends AbstractType
             ->add('libelle', TextType::class, [
                 'label' => "Titre de l'article :",
             ])
-            ->add('prix', IntegerType::class, [
+            ->add('price', IntegerType::class, [
                 'label' => "Prix :",
             ])
             ->add('description', TextareaType::class, [
@@ -41,8 +41,8 @@ class ArticleType extends AbstractType
                 'label' => "Promo :",
                 'required' => false,
             ])
-            ->add('categorie', EntityType::class,[
-                'class' => Categorie::class,
+            ->add('category', EntityType::class,[
+                'class' => Category::class,
                 'choice_label' => "libelle",
                 'label' => "Catégories :",
                 'multiple' => true,

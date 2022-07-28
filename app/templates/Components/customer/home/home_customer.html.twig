@@ -1,4 +1,4 @@
-{% extends 'layout_customer/base_customer.html.twig' %}
+{% extends 'Common/base.html.twig' %}
 
 {% block stylesheets %}
 
@@ -12,67 +12,25 @@
 
     <div class="home-client">
 
-        <a href="#" class="link ">
-            <div class="card col-4">
-                <div class="card-body">
-                    <div class="img"></div>
-                    <div class="content-card">
-                        <div class="description">
-                            <h3 class="title">Article 1</h3>
-                            <p class="price">12.80€</p>
+        {% for article in articles %}
+            <a href="#" class="link">
+                <div class="card col-4">
+                    <div class="card-body">
+                        <div class="img"></div>
+                        <div class="content-card">
+                            <div class="description">
+                                <h3 class="title">{{ article.libelle }}</h3>
+                                <p class="price">{{ article.price }} €</p>
+                            </div>
+                            {% if app.user %}
+                                <a href="#">Ajouter au panier</a>
+                            {% endif %}
                         </div>
-                        <a href="#">Ajouter au panier</a>
+                        
                     </div>
-                    
                 </div>
-            </div>
-        </a>
-        <a href="#" class="link">
-            <div class="card col-4">
-                <div class="card-body">
-                    <div class="img"></div>
-                    <div class="content-card">
-                        <div class="description">
-                            <h3 class="title">Article 1</h3>
-                            <p class="price">12.80€</p>
-                        </div>
-                        <a href="#">Ajouter au panier</a>
-                    </div>
-                    
-                </div>
-            </div>
-        </a>
-        <a href="#" class="link">
-            <div class="card col-4">
-                <div class="card-body">
-                    <div class="img"></div>
-                    <div class="content-card">
-                        <div class="description">
-                            <h3 class="title">Article 1</h3>
-                            <p class="price">12.80€</p>
-                        </div>
-                        <a href="#">Ajouter au panier</a>
-                    </div>
-                    
-                </div>
-            </div>
-        </a>
-        <a href="#" class="link">
-            <div class="card col-4">
-                <div class="card-body">
-                    <div class="img"></div>
-                    <div class="content-card">
-                        <div class="description">
-                            <h3 class="title">Article 1</h3>
-                            <p class="price">12.80€</p>
-                        </div>
-                        <a href="#">Ajouter au panier</a>
-                    </div>
-                    
-                </div>
-            </div>
-        </a>
-
+            </a>
+        {% endfor %}
     </div>
 
 

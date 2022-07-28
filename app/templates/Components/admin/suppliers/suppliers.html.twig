@@ -1,4 +1,4 @@
-{% extends 'layout_admin/base_admin.html.twig' %}
+{% extends 'Common/base.html.twig' %}
 
 {% block content %}
 
@@ -6,7 +6,7 @@
 
         <div class="header-common">
             <h1>Gestion des fournisseurs</h1>
-            <button type="button" class="btn btn-primary">Créer un fournisseur</button>
+            <a href="{{ path("admin_suppliers_new") }}" class="btn btn-primary">Créer un fournisseur</a>
         </div>
 
         <table class="table text-center">
@@ -19,16 +19,17 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>Fournisseur 1</td>
-                    <td>False</td>
-                    <td>
-                        <a class="btn btn-info" href="#"><i class="fas fa-pen-fancy"></i></a>
-                        <a class="delete btn btn-danger " href="#"><i class="fas fa-trash"></i></a>
-                    </td>
-                </tr>
-
+                {% for supplier in suppliers %}
+                    <tr>
+                        <td>{{ supplier.id }}</td>
+                        <td>{{ supplier.libelle }}</td>
+                        <td>{{ supplier.whenDeleted }}</td>
+                        <td>
+                            <a class="btn btn-info" href="{{ path('admin_suppliers_update', {id: supplier.id}) }}"><i class="fas fa-pen-fancy"></i></a>
+                            <a class="delete btn btn-danger " href="{{ path('admin_suppliers_delete', {id: supplier.id}) }}"><i class="fas fa-trash"></i></a>
+                        </td>
+                    </tr>
+                {% endfor %}
             </tbody>
 
         </table>
