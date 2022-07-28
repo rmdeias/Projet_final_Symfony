@@ -6,23 +6,19 @@
 
         <div class="header-new-update">
             <h1>Créer une catégorie</h1>
-            <button type="button" class="btn btn-danger">Retour</button>
+            <a href="{{ path('admin_category') }}" class="btn btn-danger">Retour</a>
         </div>
 
-        <form action ="#" method="post" enctype="multipart/form-data">
-        
-            <div class="form-row col-12">
+        {{ form_start(form) }}
 
-                <div class="content">
-                    <label>Titre de la catégorie: </label>
-                    <input  class="form-control" type="text" id="title" name="title"> 
-                </div>               
-     
+            <div class="content">
+                {{form_label(form.libelle)}}
+                {{form_widget(form.libelle, {'attr' : {'class' : 'form-control'}})}}
             </div>
 
-            <button class= "btn btn-success mt-5 mb-5" type= "submit">Valider</button>
-        
-        </form>
+            <button type="submit" class="btn btn-success">Valider</button>
+
+        {{ form_end(form) }}
 
     </div>
 

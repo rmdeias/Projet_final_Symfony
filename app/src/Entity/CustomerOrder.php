@@ -34,6 +34,10 @@ class CustomerOrder
     #[ORM\JoinColumn(nullable: false)]
     private $user;
 
+    #[ORM\ManyToOne(targetEntity: PaymentMethod::class)]
+    #[ORM\JoinColumn(nullable: false)]
+    private $paymentMethod;
+
     public function __construct()
     {
         $this->article = new ArrayCollection();
@@ -100,6 +104,18 @@ class CustomerOrder
     public function setUser(?User $user): self
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    public function getPaymentMethod(): ?PaymentMethod
+    {
+        return $this->paymentMethod;
+    }
+
+    public function setPaymentMethod(?PaymentMethod $paymentMethod): self
+    {
+        $this->paymentMethod = $paymentMethod;
 
         return $this;
     }

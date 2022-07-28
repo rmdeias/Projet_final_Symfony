@@ -24,6 +24,7 @@ class OrdersController extends AbstractController
     public function takeOrder($id, UserRepository $userRepository)
     {
         $user = $userRepository->find($id);
+        
         return $this->render('Components/admin/orders/take_order.html.twig', [
         ]);
     }

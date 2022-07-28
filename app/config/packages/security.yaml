@@ -16,6 +16,8 @@ security:
             form_login:
                 login_path: app_login
                 check_path: app_login
+                default_target_path: home_customer
+                always_use_default_target_path: true
                 enable_csrf: true
             lazy: true
             logout:
