@@ -29,7 +29,7 @@
 
               <h1 class="h24">E-Commerce</h1>
 
-              <button type="button" class="btn btn-danger">Déconnexion</button>
+              <a href="{{ path('app_logout') }}" class="btn btn-danger">Déconnexion</a>
 
         </div>
 
@@ -40,36 +40,36 @@
 
     {{ form_start(registrationForm, {'attr': {'class' : 'form-row col-10'}}) }}
         <div class="content">
-            {{ form_label(registrationForm.nom)}}
-            {{ form_widget(registrationForm.nom, {'attr' : {'class' : 'form-control'}})}}
+            {{ form_label(registrationForm.name)}}
+            {{ form_widget(registrationForm.name, {'attr' : {'class' : 'form-control'}})}}
         </div>
         <div class="content">
-            {{ form_label(registrationForm.prenom)}}
-            {{ form_widget(registrationForm.prenom, {'attr' : {'class' : 'form-control'}})}}
+            {{ form_label(registrationForm.firstname)}}
+            {{ form_widget(registrationForm.firstname, {'attr' : {'class' : 'form-control'}})}}
         </div>
         <div class="content">
-            {{ form_label(registrationForm.adresse)}}
-            {{ form_widget(registrationForm.adresse, {'attr' : {'class' : 'form-control'}})}}
+            {{ form_label(registrationForm.address)}}
+            {{ form_widget(registrationForm.address, {'attr' : {'class' : 'form-control'}})}}
         </div>
         <div class="content">
-            {{ form_label(registrationForm.adresse_complementaire)}}
-            {{ form_widget(registrationForm.adresse_complementaire, {'attr' : {'class' : 'form-control'}})}}
+            {{ form_label(registrationForm.additionalAddress)}}
+            {{ form_widget(registrationForm.additionalAddress, {'attr' : {'class' : 'form-control'}})}}
         </div>
         <div class="content">
-            {{ form_label(registrationForm.numero_rue)}}
-            {{ form_widget(registrationForm.numero_rue, {'attr' : {'class' : 'form-control'}})}}
+            {{ form_label(registrationForm.streetNumber)}}
+            {{ form_widget(registrationForm.streetNumber, {'attr' : {'class' : 'form-control'}})}}
         </div>
         <div class="content">
-            {{ form_label(registrationForm.code_postal)}}
-            {{ form_widget(registrationForm.code_postal, {'attr' : {'class' : 'form-control'}})}}
+            {{ form_label(registrationForm.zipCode)}}
+            {{ form_widget(registrationForm.zipCode, {'attr' : {'class' : 'form-control'}})}}
         </div>
         <div class="content">
-            {{ form_label(registrationForm.ville)}}
-            {{ form_widget(registrationForm.ville, {'attr' : {'class' : 'form-control'}})}}
+            {{ form_label(registrationForm.city)}}
+            {{ form_widget(registrationForm.city, {'attr' : {'class' : 'form-control'}})}}
         </div>
         <div class="content">
-            {{ form_label(registrationForm.pays)}}
-            {{ form_widget(registrationForm.pays, {'attr' : {'class' : 'form-control'}})}}
+            {{ form_label(registrationForm.country)}}
+            {{ form_widget(registrationForm.country, {'attr' : {'class' : 'form-control'}})}}
         </div>
         <div class="content">
             {{ form_label(registrationForm.email)}}

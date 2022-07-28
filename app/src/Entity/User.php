@@ -55,17 +55,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'string', length: 255)]
     private $country;
 
-    #[ORM\ManyToMany(targetEntity: PaymentMethod::class, inversedBy: 'users')]
-    private $payment_method;
-
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: CustomerOrder::class)]
     private $customerOrders;
+
+    #[ORM\ManyToMany(targetEntity: PaymentMethod::class, mappedBy: 'users')]
+    private $paymentMethods;
 
     public function __construct()
     {
         $this->restriction = false;
         $this->payment_method = new ArrayCollection();
         $this->customerOrders = new ArrayCollection();
+        $this->paymentMethods = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -247,30 +248,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
-     * @return Collection<int, PaymentMethod>
-     */
-    public function getPaymentMethod(): Collection
-    {
-        return $this->payment_method;
-    }
-
-    public function addPaymentMethod(PaymentMethod $paymentMethod): self
-    {
-        if (!$this->payment_method->contains($paymentMethod)) {
-            $this->payment_method[] = $paymentMethod;
-        }
-
-        return $this;
-    }
-
-    public function removePaymentMethod(PaymentMethod $paymentMethod): self
-    {
-        $this->payment_method->removeElement($paymentMethod);
-
-        return $this;
-    }
-
-    /**
      * @return Collection<int, CustomerOrder>
      */
     public function getCustomerOrders(): Collection
@@ -295,6 +272,33 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             if ($customerOrder->getUser() === $this) {
                 $customerOrder->setUser(null);
             }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, PaymentMethod>
+     */
+    public function getPaymentMethods(): Collection
+    {
+        return $this->paymentMethods;
+    }
+
+    public function addPaymentMethod(PaymentMethod $paymentMethod): self
+    {
+        if (!$this->paymentMethods->contains($paymentMethod)) {
+            $this->paymentMethods[] = $paymentMethod;
+            $paymentMethod->addUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removePaymentMethod(PaymentMethod $paymentMethod): self
+    {
+        if ($this->paymentMethods->removeElement($paymentMethod)) {
+            $paymentMethod->removeUser($this);
         }
 
         return $this;

@@ -9,7 +9,6 @@ use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: PaymentMethodRepository::class)]
 class PaymentMethod
-
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -19,7 +18,7 @@ class PaymentMethod
     #[ORM\Column(type: 'string', length: 255)]
     private $type;
 
-    #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'payment_method')]
+    #[ORM\ManyToMany(targetEntity: User::class, inversedBy: 'paymentMethods')]
     private $users;
 
     public function __construct()
@@ -56,7 +55,6 @@ class PaymentMethod
     {
         if (!$this->users->contains($user)) {
             $this->users[] = $user;
-            $user->addPaymentMethod($this);
         }
 
         return $this;
@@ -64,9 +62,7 @@ class PaymentMethod
 
     public function removeUser(User $user): self
     {
-        if ($this->users->removeElement($user)) {
-            $user->removePaymentMethod($this);
-        }
+        $this->users->removeElement($user);
 
         return $this;
     }
