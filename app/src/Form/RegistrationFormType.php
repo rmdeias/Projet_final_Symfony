@@ -2,9 +2,12 @@
 
 namespace App\Form;
 
+use App\Entity\PaymentMethod;
 use App\Entity\User;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -20,32 +23,34 @@ class RegistrationFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('nom', TextType::class, [
+            ->add('name', TextType::class, [
                 'label' => 'Nom :',
             ])
-            ->add('prenom', TextType::class, [
+            ->add('firstname', TextType::class, [
                 'label' => 'Prénom :',
             ])
-            ->add('adresse', TextType::class, [
+            ->add('address', TextType::class, [
                 'label' => 'Adresse :',
             ])
-            ->add('adresse_complementaire', TextType::class,[
+            ->add('additionalAddress', TextType::class,[
                 'label' => 'Adresse Complémentaire :',
                 'required' => false
             ])
-            ->add('ville', TextType::class, [
+            ->add('city', TextType::class, [
                 'label' => 'Ville :',
             ])
-            ->add('code_postal', TextType::class, [
+            ->add('zipCode', TextType::class, [
                 'label' => 'Code Postal :',
             ])
-            ->add('numero_rue', IntegerType::class, [
+            ->add('streetNumber', IntegerType::class, [
                 'label' => 'Numéro de rue :',
             ])
-            ->add('pays', TextType::class, [
+            ->add('country', TextType::class, [
                 'label' => 'Pays'
             ])
-            ->add('email')
+            ->add('email', EmailType::class, [
+                'label' => "Email :",
+            ])
             ->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,
                 'label' => 'Convenir des conditions d\'utilisation',

@@ -1,0 +1,37 @@
+{% extends 'Common/base.html.twig' %}
+
+{% block stylesheets %}
+
+    {{ parent() }}
+
+   <link rel="stylesheet" type="text/css" href="{{ asset('CSS/customer/home/home.css') }}">
+
+{% endblock %}
+
+{% block content %}
+
+    <div class="home-client">
+
+        {% for article in articles %}
+            <a href="#" class="link">
+                <div class="card col-4">
+                    <div class="card-body">
+                        <div class="img"></div>
+                        <div class="content-card">
+                            <div class="description">
+                                <h3 class="title">{{ article.libelle }}</h3>
+                                <p class="price">{{ article.price }} €</p>
+                            </div>
+                            {% if app.user %}
+                                <a href="#">Ajouter au panier</a>
+                            {% endif %}
+                        </div>
+                        
+                    </div>
+                </div>
+            </a>
+        {% endfor %}
+    </div>
+
+
+{% endblock %}

@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\ArticleRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ArticleRepository::class)]
@@ -19,7 +20,8 @@ class Article
     private $libelle;
 
     #[ORM\Column(type: 'integer')]
-    private $prix;
+    #[Assert\PositiveOrZero]
+    private $price;
 
     #[ORM\Column(type: 'text', nullable: true)]
     private $description;
@@ -31,25 +33,25 @@ class Article
     private $img_alt;
 
     #[ORM\Column(type: 'integer', nullable: true)]
+    #[Assert\PositiveOrZero]
     private $promo;
 
     #[ORM\Column(type: 'date', nullable: true)]
     private $when_deleted;
 
+    #[ORM\ManyToMany(targetEntity: Category::class, inversedBy: 'articles')]
+    private $category;
 
-    #[ORM\ManyToMany(targetEntity: Categorie::class, inversedBy: 'articles')]
-    private $categorie;
+    #[ORM\ManyToMany(targetEntity: CustomerOrder::class, mappedBy: 'article')]
+    private $customerOrders;
 
-    #[ORM\ManyToMany(targetEntity: Commande::class, mappedBy: 'article')]
-    private $commandes;
-
-    #[ORM\OneToMany(mappedBy: 'article', targetEntity: VariationArticle::class)]
+    #[ORM\OneToMany(mappedBy: 'article', targetEntity: ArticleVariation::class)]
     private $variation;
 
     public function __construct()
     {
-        $this->categorie = new ArrayCollection();
-        $this->commandes = new ArrayCollection();
+        $this->category = new ArrayCollection();
+        $this->customerOrders = new ArrayCollection();
         $this->variation = new ArrayCollection();
     }
 
@@ -70,14 +72,14 @@ class Article
         return $this;
     }
 
-    public function getPrix(): ?int
+    public function getPrice(): ?int
     {
-        return $this->prix;
+        return $this->price;
     }
 
-    public function setPrix(int $prix): self
+    public function setPrice(int $price): self
     {
-        $this->prix = $prix;
+        $this->price = $price;
 
         return $this;
     }
@@ -143,65 +145,65 @@ class Article
     }
 
     /**
-     * @return Collection<int, Categorie>
+     * @return Collection<int, Category>
      */
-    public function getCategorie(): Collection
+    public function getCategory(): Collection
     {
-        return $this->categorie;
+        return $this->category;
     }
 
-    public function addCategorie(Categorie $categorie): self
+    public function addCategory(Category $category): self
     {
-        if (!$this->categorie->contains($categorie)) {
-            $this->categorie[] = $categorie;
+        if (!$this->category->contains($category)) {
+            $this->category[] = $category;
         }
 
         return $this;
     }
 
-    public function removeCategorie(Categorie $categorie): self
+    public function removeCategory(Category $category): self
     {
-        $this->categorie->removeElement($categorie);
+        $this->category->removeElement($category);
 
         return $this;
     }
 
     /**
-     * @return Collection<int, Commande>
+     * @return Collection<int, CustomerOrder>
      */
-    public function getCommandes(): Collection
+    public function getCustomerOrders(): Collection
     {
-        return $this->commandes;
+        return $this->customerOrders;
     }
 
-    public function addCommande(Commande $commande): self
+    public function addCustomerOrder(CustomerOrder $customerOrder): self
     {
-        if (!$this->commandes->contains($commande)) {
-            $this->commandes[] = $commande;
-            $commande->addArticle($this);
+        if (!$this->customerOrders->contains($customerOrder)) {
+            $this->customerOrders[] = $customerOrder;
+            $customerOrder->addArticle($this);
         }
 
         return $this;
     }
 
-    public function removeCommande(Commande $commande): self
+    public function removeCustomerOrder(CustomerOrder $customerOrder): self
     {
-        if ($this->commandes->removeElement($commande)) {
-            $commande->removeArticle($this);
+        if ($this->customerOrders->removeElement($customerOrder)) {
+            $customerOrder->removeArticle($this);
         }
 
         return $this;
     }
 
     /**
-     * @return Collection<int, VariationArticle>
+     * @return Collection<int, ArticleVariation>
      */
     public function getVariation(): Collection
     {
         return $this->variation;
     }
 
-    public function addVariation(VariationArticle $variation): self
+    public function addVariation(ArticleVariation $variation): self
     {
         if (!$this->variation->contains($variation)) {
             $this->variation[] = $variation;
@@ -211,7 +213,7 @@ class Article
         return $this;
     }
 
-    public function removeVariation(VariationArticle $variation): self
+    public function removeVariation(ArticleVariation $variation): self
     {
         if ($this->variation->removeElement($variation)) {
             // set the owning side to null (unless already changed)

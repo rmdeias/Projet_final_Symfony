@@ -1,0 +1,44 @@
+{% extends 'Common/base.html.twig' %}
+
+{% block stylesheets %}
+
+    {{ parent() }}
+
+   <link rel="stylesheet" type="text/css" href="{{ asset('CSS/customer/cart/cart.css') }}">
+
+{% endblock %}
+
+{% block content %}
+
+    <div class="panier_client">
+
+        <div class="header-client">
+            <h1>Mon panier</h1>
+            <a href="{{ path('home_customer') }}" class="btn btn-danger">Retour</a>
+        </div>
+
+        {{ form_start(form) }}
+
+            <div class="content">
+                {{ form_label(form.articles) }}
+                {{ form_widget(form.articles, {'attr' : {'class' : 'form-control'}}) }}
+            </div>
+
+            <div class="content">
+                {{ form_label(form.date) }}
+                {{ form_widget(form.date, {'attr' : {'class' : 'form-control'}}) }}
+            </div>
+
+            <div class="content">
+                {{ form_label(form.statut) }}
+                {{ form_widget(form.statut, {'attr' : {'class' : 'form-control'}}) }}
+            </div>
+
+            <button class= "btn btn-success mt-5 mb-5" type= "submit">Passer commande</button>
+
+        {{ form_end(form) }}
+
+    </div>
+
+
+{% endblock %}

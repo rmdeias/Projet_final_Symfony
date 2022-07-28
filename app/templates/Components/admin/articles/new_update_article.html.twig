@@ -1,4 +1,4 @@
-{% extends 'layout_admin/base_admin.html.twig' %}
+{% extends 'Common/base.html.twig' %}
 
 {% block content %}
 
@@ -6,81 +6,56 @@
 
         <div class="header-new-update">
             <h1>Créer un articles</h1>
-            <button type="button" class="btn btn-primary">Gérer le stock</button>
         </div>
 
-        <form action ="#" method="post" enctype="multipart/form-data">
-        
-            <div class="form-row col-12">
+        {{ form_start(form) }}
 
-                <div class="content">
-                    <label>Titre de l'article: </label>
-                    <input  class="form-control" type="text" id="title" name="title"> 
-                </div>               
-
-                <div class="content">
-                    <label>Prix:</label>
-                    <input class="form-control" type="number" id="price" name="price" min="0">
-                </div>
-
-                <div class="content">
-                    <label>Description: </label>
-                    <textarea class="form-control " type="text" id="description" name="description"></textarea>
-                </div>
-
-                <div class="content">
-                    <label>Image principal: </label>
-                    <input class="form-control" type="file" id="image" name="image">
-                </div>
-                
-                <div class="content">
-                    <label>Image annexe: </label>
-                    <input class="form-control" type="file" id="imageAlt" name="imageAlt">
-                </div>
-                
-                <div class="content">
-                    <label>Taille: </label>
-                    <select name="size" id="size" class="form-control">
-                        <option value="">Selectionner une taille</option>
-                        <option value="s">S</option>
-                        <option value="m">M</option>
-                        <option value="l">L</option>
-                        <option value="xl">XL</option>
-                    </select>
-                </div>
-                
-                <div class="content">
-                    <label>Promo: </label>
-                    <input class="form-control" type="number" id="sold" name="sold" value="%" min="0">
-                </div>
-            
-                <div class="content">
-                    <label>Catégories:</label>
-                    <select name="category" id="cateogry" class="form-control">
-                        <option value="">Selectionner une / des catégories</option>
-                        <option value="Catégorie 1">Catégorie 1</option>
-                        <option value="Catégorie 2">Catégorie 2</option>
-                        <option value="Catégorie 3">Catégorie 3</option>
-                        <option value="Catégorie 4">Catégorie 4</option>
-                    </select>
-                </div>
-
-                <div class="content">
-                    <label>Fournisseur:</label>
-                    <select name="vendor" id="vendor" class="form-control">
-                        <option value="">Selectionner un fournisseur</option>
-                        <option value="Fournisseur 1">Fournisseur 1</option>
-                        <option value="Fournisseur 2">Fournisseur 2</option>
-                        <option value="Fournisseur 3">Fournisseur 3</option>
-                        <option value="Fournisseur 4">Fournisseur 4</option>
-                    </select>
-                </div>
-                    
+            <div class="content">
+                {{ form_label(form.libelle) }}
+                {{ form_widget(form.libelle, {'attr' : {'class' : 'form-control'}}) }}
             </div>
 
+            <div class="content">
+                {{ form_label(form.price) }}
+                {{ form_widget(form.price, {'attr' : {'class' : 'form-control'}}) }}
+            </div>
+
+            <div class="content">
+                {{ form_label(form.description) }}
+                {{ form_widget(form.description, {'attr' : {'class' : 'form-control'}}) }}
+            </div>
+
+            <div class="content">
+                {{ form_label(form.img) }}
+                {{ form_widget(form.img, {'attr' : {'class' : 'form-control'}}) }}
+            </div>
+
+            <div class="content">
+                {{ form_label(form.img_alt) }}
+                {{ form_widget(form.img_alt, {'attr' : {'class' : 'form-control'}}) }}
+            </div>
+
+            <div class="content">
+                {{ form_label(form.promo) }}
+                {{ form_widget(form.promo, {'attr' : {'class' : 'form-control'}}) }}
+            </div>
+
+            <div class="content">
+                {{ form_label(form.category) }}
+                {{ form_widget(form.category, {'attr' : {'class' : 'form-control'}}) }}
+            </div>
+
+            {% if form.when_deleted is defined %}
+                <div class="content">
+                    {{ form_label(form.when_deleted) }}
+                    {{ form_widget(form.when_deleted, {'attr' : {'class' : 'form-control'}}) }}
+                </div>
+            {% endif %}
+
             <button class= "btn btn-success mt-5 mb-5" type= "submit">Valider</button>
-        
-        </form>
+
+        {{ form_end(form) }}
+
 
     </div>
 

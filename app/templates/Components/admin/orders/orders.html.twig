@@ -1,0 +1,49 @@
+{% extends 'Common/base.html.twig' %}
+
+
+{% block content %}
+
+    <div class="home_admin">
+
+        <div class="header-common">
+            <h1>Gestion des commandes </h1>
+        </div>
+
+        <table class="table text-center">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>Utilisateur</th>
+                <th>Email</th>
+                <th>Article(s)</th>
+                <th>Date</th>
+                <th>Statut</th>
+                <th>Action</th>
+
+            </tr>
+            </thead>
+            <tbody>
+                {% for order in orders %}
+                    <tr>
+                        <td>{{ order.id }}</td>
+                        <td>{{ order.user.name }}</td>
+                        <td>{{ order.user.email }}</td>
+                        <td>
+                            {% for article in order.article %}
+                                <a href="{{ path('admin_update_article', {id: article.id}) }}">{{article.libelle}}</a> -
+                            {% endfor %}
+                        </td>
+                        <td>{{ order.date|date('d/m/Y') }}</td>
+                        <td>{{ order.statut }}</td>
+                        <td>
+                            <a class="delete btn btn-danger " href="{{ path('admin_order_delete', {id: order.id}) }}"><i class="fas fa-trash"></i></a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+    </div>
+
+
+{% endblock %}

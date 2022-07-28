@@ -1,0 +1,26 @@
+{% extends 'Common/base.html.twig' %}
+
+{% block content %}
+
+    <div class="new_update_admin">
+
+        <div class="header-new-update">
+            <h1>Créer une catégorie</h1>
+            <a href="{{ path('admin_category') }}" class="btn btn-danger">Retour</a>
+        </div>
+
+        {{ form_start(form) }}
+
+            <div class="content">
+                {{form_label(form.libelle)}}
+                {{form_widget(form.libelle, {'attr' : {'class' : 'form-control'}})}}
+            </div>
+
+            <button type="submit" class="btn btn-success">Valider</button>
+
+        {{ form_end(form) }}
+
+    </div>
+
+
+{% endblock %}

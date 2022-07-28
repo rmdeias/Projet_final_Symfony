@@ -1,4 +1,4 @@
-{% extends 'layout_admin/base_admin.html.twig' %}
+{% extends 'Common/base.html.twig' %}
 
 {% block content %}
 
@@ -6,7 +6,7 @@
 
         <div class="header-new-update">
             <h1>Créer un utilisateur</h1>
-            <button type="button" class="btn btn-danger">Retour</button>
+            <a href="{{ path('admin_users') }}" class="btn btn-danger">Retour</a>
         </div>
 
         <form action ="#" method="post" enctype="multipart/form-data">
@@ -63,20 +63,11 @@
                     <input class="form-control" type="checkbox" id="restriction" name="restriction">
                 </div>
 
-
                 <div class="content">
-                    <label>Moyen de paiement:</label> <a href="#">Ajouter un moyen de paiement</a>
+                    <label>Moyen de paiement:</label> <a href="{{ path('admin_payments_new') }}">Ajouter un moyen de paiement</a>
                     <select name="paiement" id="paiement" class="form-control">
                         <option value="paiement 1">Moyen de paiement 1</option>
                         <option value="paiement 2">Moyen de paiement 2</option>
-                    </select>
-                </div>
-
-                <div class="content">
-                    <label>Rôles:</label>
-                    <select name="roles" id="roles" class="form-control">
-                        <option value="admin">Rôle Admin</option>
-                        <option value="user 2">Rôle User 2</option>
                     </select>
                 </div>
                     

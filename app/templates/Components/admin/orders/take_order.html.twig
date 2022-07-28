@@ -1,0 +1,49 @@
+{% extends 'Common/base.html.twig' %}
+
+{% block stylesheets %}
+
+  {{ parent() }}
+
+   <link rel="stylesheet" type="text/css" href="{{ asset('CSS/admin/orders/take_command.css') }}">
+
+{% endblock %}
+
+{% block content %}
+
+    <div class="take_command_admin">
+
+        <div class="header-take-command">
+            <h1>Passer une commande</h1>
+            <button type="button" class="btn btn-danger">Retour</button>
+        </div>
+
+        <form action ="#" method="post" enctype="multipart/form-data">
+        
+            <div class="form-row col-12">
+
+                <div class="content">
+                    <label>Articles:</label>
+                    <select name="articles" id="articles" class="form-control">
+                        <option value="article 1">Article 1</option>
+                        <option value="article 2">Article 2</option>
+                    </select>
+                </div>
+
+                <div class="content">
+                    <label>Sélectionner un moyen de paiement:</label>
+                    <select name="paiement" id="paiement" class="form-control">
+                        <option value="paiement1">Moyen de paiement 1</option>
+                        <option value="paiement2">Moyen de paiement 2</option>
+                    </select>
+                </div>
+                    
+            </div>
+
+            <button class= "btn btn-success mt-5 mb-5" type= "submit">Valider</button>
+        
+        </form>
+
+    </div>
+
+
+{% endblock %}

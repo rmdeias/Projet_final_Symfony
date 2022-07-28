@@ -1,0 +1,79 @@
+{% extends 'Common/base.html.twig' %}
+
+{% block stylesheets %}
+
+    {{ parent() }}
+
+   <link rel="stylesheet" type="text/css" href="{{ asset('CSS/profile/profile.css') }}">
+
+{% endblock %}
+
+{% block content %}
+
+    <div class="profile">
+
+        <div class="header-profile">
+            <h1>Mon profil</h1>
+        </div>
+
+        {{ form_start(form) }}
+
+            <div class="content">
+                {{ form_label(form.name) }}
+                {{ form_widget(form.name, {'attr' : {'class' : 'form-control'}}) }}
+            </div>
+
+            <div class="content">
+                {{ form_label(form.firstname) }}
+                {{ form_widget(form.firstname, {'attr' : {'class' : 'form-control'}}) }}
+            </div>
+
+            <div class="content">
+                {{ form_label(form.email) }}
+                {{ form_widget(form.email, {'attr' : {'class' : 'form-control'}}) }}
+            </div>
+
+            <div class="content">
+                {{ form_label(form.address) }}
+                {{ form_widget(form.address, {'attr' : {'class' : 'form-control'}}) }}
+            </div>
+
+            <div class="content">
+                {{ form_label(form.additionalAddress) }}
+                {{ form_widget(form.additionalAddress, {'attr' : {'class' : 'form-control'}}) }}
+            </div>
+
+            <div class="content">
+                {{ form_label(form.streetNumber) }}
+                {{ form_widget(form.streetNumber, {'attr' : {'class' : 'form-control'}}) }}
+            </div>
+
+            <div class="content">
+                {{ form_label(form.zipCode) }}
+                {{ form_widget(form.zipCode, {'attr' : {'class' : 'form-control'}}) }}
+            </div>
+
+            <div class="content">
+                {{ form_label(form.city) }}
+                {{ form_widget(form.city, {'attr' : {'class' : 'form-control'}}) }}
+            </div>
+
+            <div class="content">
+                {{ form_label(form.country) }}
+                {{ form_widget(form.country, {'attr' : {'class' : 'form-control'}}) }}
+            </div>
+
+            <div class="content">
+                {{ form_label(form.paymentMethods) }}
+                {{ form_widget(form.paymentMethods, {'attr' : {'class' : 'form-control'}}) }}
+            </div>
+
+            <button class= "btn btn-success mt-5 mb-5" type= "submit">Valider</button>
+
+        {{ form_end(form) }}
+
+
+    </div>
+
+
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends 'Common/base.html.twig' %}
+
+{% block content %}
+
+    <div class="home_admin">
+
+        <div class="header-common">
+            <h1>Gestion des catégories</h1>
+            <a href="{{ path('admin_category_new') }}" class="btn btn-primary">Créer une catégorie</a>
+        </div>
+
+        <table class="table text-center">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Nom</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for category in categories %}
+                    <tr>
+                        <td>{{category.id}}</td>
+                        <td>{{category.libelle}}</td>
+                        <td>
+                            <a class="btn btn-info" href="{{ path('admin_category_update', {id : category.id}) }}"><i class="fas fa-pen-fancy"></i></a>
+                            <a class="delete btn btn-danger " href="{{ path('admin_category_delete', {id: category.id}) }}"><i class="fas fa-trash"></i></a>
+                        </td>
+                    </tr>
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+
+{% endblock %}
