@@ -19,6 +19,7 @@ public const ORDER_REFERENCE ='order';
             $order->setStatut("status".$count);
             $order->setUser($this->getReference("mail".$count."@gmail.com"));
             $order->setDate($date);
+            $order->setPaymentMethod($this->getReference("paymentMethod".$count));
             $this->addReference(self::ORDER_REFERENCE. $count, $order);
             $manager->persist($order);
         }
@@ -28,6 +29,7 @@ public const ORDER_REFERENCE ='order';
     {
         return [
             UserFixtures::class,
+
         ];
     }
 

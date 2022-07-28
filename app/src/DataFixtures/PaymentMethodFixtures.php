@@ -13,7 +13,7 @@ class PaymentMethodFixtures extends Fixture
     public const PAYMENT_REFERENCE = 'paymentMethod';
     public function load(ObjectManager $manager)
     {
-        for ($count = 0; $count < 3; $count++) {
+        for ($count = 0; $count < 5; $count++) {
             $paymentMethod = new PaymentMethod();
             $paymentMethod->setType("paymentMethod" . $count);
             $this->addReference(self::PAYMENT_REFERENCE . $count, $paymentMethod);
