@@ -13,13 +13,10 @@ security:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
         main:
-            form_login:
-                login_path: app_login
-                check_path: app_login
-                enable_csrf: true
             lazy: true
             logout:
                 path: app_logout
+            custom_authenticator: App\Security\UsersAuthenticator
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#the-firewall
