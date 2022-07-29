@@ -53,14 +53,13 @@ class UserType extends AbstractType
                 'label' => 'Restriction ?',
                 'required' => false,
             ])
-            /*
-            ->add('paymentMethods', EntityType::class, [
-                'label' => "Moyen(s) de paiement :",
+            ->add('paymentMethods', EntityType::class,[
                 'class' => PaymentMethod::class,
-                'choice_label' => 'type',
+                'choice_label' => "type",
+                'label' => "Moyen(s) de paiement :",
+                'multiple' => true,
                 'required' => false
             ])
-            */
         ;
     }
 
