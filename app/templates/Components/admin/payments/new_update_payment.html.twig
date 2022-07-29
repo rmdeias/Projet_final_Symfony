@@ -7,23 +7,19 @@
 
         <div class="header-new-update">
             <h1>Créer un moyen de paiement</h1>
-            <button type="button" class="btn btn-danger">Retour</button>
+            <a href="{{ path('admin_payments') }}" class="btn btn-danger">Retour</a>
         </div>
 
-        <form action ="#" method="post" enctype="multipart/form-data">
+        {{ form_start(form) }}
 
-            <div class="form-row col-12">
-
-                <div class="content">
-                    <label>Type: </label>
-                    <input  class="form-control" type="text" id="type" name="type">
-                </div>
-
+            <div class="content">
+                {{form_label(form.type)}}
+                {{form_widget(form.type, {'attr' : {'class' : 'form-control'}})}}
             </div>
 
-            <button class= "btn btn-success mt-5 mb-5" type= "submit">Valider</button>
+            <button type="submit" class="btn btn-success">Valider</button>
 
-        </form>
+        {{ form_end(form) }}
 
     </div>
 

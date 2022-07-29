@@ -9,73 +9,62 @@
             <a href="{{ path('admin_users') }}" class="btn btn-danger">Retour</a>
         </div>
 
-        <form action ="#" method="post" enctype="multipart/form-data">
-        
-            <div class="form-row col-12">
 
-                <div class="content">
-                    <label>Nom: </label>
-                    <input  class="form-control" type="text" id="lastName" name="lastName"> 
-                </div>    
+        {{ form_start(form) }}
 
-                <div class="content">
-                    <label>Prénom: </label>
-                    <input class="form-control" type="text" id="firstName" name="firstName"> 
-                </div>            
-
-                <div class="content">
-                    <label>Adresse mail: </label>
-                    <textarea class="form-control " type="text" id="email" name="email"></textarea>
-                </div>
-
-                <div class="content">
-                    <label>Adresse: </label>
-                    <input class="form-control" type="text" id="address" name="address">
-                </div>
-                
-                <div class="content">
-                    <label>Adresse complémentaire: </label>
-                    <input class="form-control" type="text" id="address_alt" name="address_alt">
-                </div>
-                
-                <div class="content">
-                    <label>Numéro de rue: </label>
-                    <input class="form-control" type="number" id="street" name="street" min="0">
-                </div>
-                
-                <div class="content">
-                    <label>Code Postal: </label>
-                    <input class="form-control" type="text" id="cp" name="cp">
-                </div>
-
-                <div class="content">
-                    <label>Ville: </label>
-                    <input class="form-control" type="text" id="city" name="city">
-                </div>
-
-                <div class="content">
-                    <label>Pays: </label>
-                    <input class="form-control" type="text" id="country" name="country">
-                </div>
-
-                <div class="content">
-                    <label>Restriction ?</label>
-                    <input class="form-control" type="checkbox" id="restriction" name="restriction">
-                </div>
-
-                <div class="content">
-                    <label>Moyen de paiement:</label> <a href="{{ path('admin_payments_new') }}">Ajouter un moyen de paiement</a>
-                    <select name="paiement" id="paiement" class="form-control">
-                        <option value="paiement 1">Moyen de paiement 1</option>
-                        <option value="paiement 2">Moyen de paiement 2</option>
-                    </select>
-                </div>
-                    
+            <div class="content">
+                {{form_label(form.firstname)}}
+                {{form_widget(form.firstname, {'attr' : {'class' : 'form-control'}})}}
             </div>
 
-            <button class= "btn btn-success mt-5 mb-5" type= "submit">Valider</button>
-        
-        </form>
+            <div class="content">
+                {{form_label(form.name)}}
+                {{form_widget(form.name, {'attr' : {'class' : 'form-control'}})}}
+            </div>
+
+            <div class="content">
+                {{form_label(form.email)}}
+                {{form_widget(form.email, {'attr' : {'class' : 'form-control'}})}}
+            </div>
+                        
+            <div class="content">
+                {{form_label(form.address)}}
+                {{form_widget(form.address, {'attr' : {'class' : 'form-control'}})}}
+            </div>
+
+            <div class="content">
+                {{form_label(form.additionalAddress)}}
+                {{form_widget(form.additionalAddress, {'attr' : {'class' : 'form-control'}})}}
+            </div>
+
+            <div class="content">
+                {{form_label(form.streetNumber)}}
+                {{form_widget(form.streetNumber, {'attr' : {'class' : 'form-control'}})}}
+            </div>
+            
+            <div class="content">
+                {{form_label(form.zipCode)}}
+                {{form_widget(form.zipCode, {'attr' : {'class' : 'form-control'}})}}
+            </div>
+
+            <div class="content">
+                {{form_label(form.country)}}
+                {{form_widget(form.country, {'attr' : {'class' : 'form-control'}})}}
+            </div>
+
+            <div class="content">
+                {{form_label(form.restriction)}}
+                {{form_widget(form.restriction, {'attr' : {'class' : 'form-check'}})}}
+            </div>
+            {#
+            <div class="content">
+                {{form_label(form.paymentMethods)}}
+                {{form_widget(form.paymentMethods, {'attr' : {'class' : 'form-control'}})}}
+            </div>
+            #}
+            <button type="submit" class="btn btn-success">Valider</button>
+
+        {{ form_end(form) }}        
 
     </div>
 
