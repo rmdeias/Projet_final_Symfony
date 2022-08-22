@@ -17,52 +17,88 @@
             <a class="btn btn-primary" href="{{ path('admin_article_new') }}">Créer un articles</a>
         </div>
 
-        <table class="table text-center">
-            <thead>
-                <tr>
-                    <th>#</th>
-                    <th>Nom</th>
-                    <th>Taille</th>
-                    <th>Prix</th>
-                    <th>Catégories</th>
-                    <th>Supprimé ?</th>
-                    <th>Quantité</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-               {% for variation_a in v_articles %}
-                    <tr>
-                        <td>{{variation_a.id}}</td>
-                        <td>{{variation_a.article.libelle}}</td>
-                        <td>{{variation_a.size}}</td>
-                        <td>{{variation_a.article.price}}</td>
-                        <td>
-                            {% if variation_a.article.category %}
-                                {% for category in variation_a.article.category %}
-                                    <a href="#">{{category.libelle}}</a> -
-                                {% endfor %}
-                            {% endif %}
-                        </td>
-                        <td>
-                            {% if variation_a.article.whenDeleted is null %}
-                                <i class="fas fa-times"></i>
-                            {% else %}
-                                {{ variation_a.article.whenDeleted|date('d/m/Y') }}
-                            {% endif %}
-                        </td>
-                        <td>{{variation_a.quantity}}<a href="{{ path('admin_stock_variation_article', {id: variation_a.id}) }}"><i class="fas fa-plus"></i></a></td>
-                        <td>
-                            {# A voir si ce n'est pas variation article au lieu de article pour l'update et delete #}
-                            <a class="btn btn-info" href="{{ path('admin_update_article', {id: variation_a.article.id}) }}"><i class="fas fa-pen-fancy"></i></a>
-                            <a class="delete btn btn-danger " href="{{ path('admin_delete_article', {id: variation_a.article.id}) }}"><i class="fas fa-trash"></i></a>
-                        </td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-        
-    </div>
+        <div class="tables">
 
+
+            <table class="table text-center col-8">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Nom</th>
+                        <th>Prix</th>
+                        <th>Catégories</th>
+                        <th>Supprimé ?</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+
+
+                    {% for article in articles %}
+                        <tr>
+                            <td>{{ article.id }}</td>
+                            <td>{{ article.libelle }}</td>
+                            <td>{{ article.price }} €</td>
+                            <td>
+                                {% if article.category %}
+                                    {% for category in article.category %}
+                                        <a href="#">{{ category.libelle }}</a>
+                                    {% endfor %}
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if article.whenDeleted is null %}
+                                    <i class="fas fa-times"></i>
+                                {% else %}
+                                    {{ article.whenDeleted|date('d/m/Y') }}
+                                {% endif %}
+                            </td>
+                            <td>
+                                <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapse{{article.id }}" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                    Voir les quantités
+                                </a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+{# Modifier pour afficher en les variation d'article avec le taille et la quantité #}
+{#  
+                <table class="table text-center col-4">
+                    <thead>
+                        <tr>
+                            <th>Taille</th>
+                            <th>Quantité</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                        {% for article in articles %}
+                            <div class="collapse" id="collapse{{ article.id }}">
+                                <div class="card card-body">
+                                    <tbody>
+                                        {% for variation_a in v_articles %}
+                                            {% if variation_a.article.id == article.id %}
+                                                <tr>
+                                                    <td>{{ variation_a.size }}</td>
+                                                    <td>{{ variation_a.quantity }}</td>
+                                                    <td></td>
+                                                </tr>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </tbody>
+                                </div>
+                            </div>
+                        {% endfor %}
+                </table>
+#}    
+
+        </div>
+
+{% endblock %}
+
+{% block javascripts %}
+
+    {{ parent() }}
 
 {% endblock %}

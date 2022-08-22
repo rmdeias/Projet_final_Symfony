@@ -35,7 +35,7 @@
                             <a class="nav-link" href="{{ path('customer_cart') }}">Mon Panier</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ path('app_profile') }}">Mon Profil</a>
+                            <a class="nav-link" href="{{ path('app_profile') }}"><i class="fas fa-user-circle"></i></a>
                         </li>
                     {% endif %}
                 </ul>
@@ -43,10 +43,12 @@
         </nav>
 
     </div>
-    {% if app.user %}
-        <a href="{{ path('app_logout') }}" class="btn btn-danger">Déconnexion</a>
-    {% else %}
-        <a href="{{ path('app_login') }}" class="btn btn-success">Connexion</a>
-    {% endif %}
-
+    <div class="box-account">
+        {% if app.user %}
+            <a href="{{ path('app_logout') }}" class="btn btn-danger">Déconnexion</a>
+        {% else %}
+            <a href="{{ path('app_login') }}" class="btn btn-success">Connexion</a>
+        {% endif %}
+    </div>
+    
 </div>

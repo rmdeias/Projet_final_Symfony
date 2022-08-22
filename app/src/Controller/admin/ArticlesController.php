@@ -17,13 +17,16 @@ use Symfony\Component\Routing\Annotation\Route;
 class ArticlesController extends AbstractController
 {
     #[Route('/', name: 'admin_articles')]
-    public function list(ArticleVariationRepository $variationArticleRepository)
+    public function list(ArticleRepository $articleRepository, ArticleVariationRepository $variationArticleRepository)
     {
         // !!! On récupère les variations d'articles
         $v_articles = $variationArticleRepository->findAll();
 
+        $articles = $articleRepository->findAll();
+
         return $this->render('Components/admin/articles/articles.html.twig',[ 
             'v_articles' => $v_articles,
+            'articles' => $articles,
         ]);
     }
 
