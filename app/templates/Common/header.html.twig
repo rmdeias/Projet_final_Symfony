@@ -9,7 +9,8 @@
     <div class="navigation">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
+                <i class="fas fa-bars d-block d-md-none" id="burger"></i>
+                <ul class="navbar-nav mr-auto d-none d-md-flex">
                     <li class="nav-item active">
                         <a class="nav-link" href={% if is_granted ("ROLE_ADMIN") %}"{{ path('admin_home') }}"{% else %} "{{ path('home_customer') }}" {% endif %}>Accueil</a>
                     </li>
@@ -52,3 +53,63 @@
     </div>
     
 </div>
+
+<div class="navigation-mobile" id="nav-mobile">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href={% if is_granted ("ROLE_ADMIN") %}"{{ path('admin_home') }}"{% else %} "{{ path('home_customer') }}" {% endif %}>Accueil</a>
+                </li>
+                {% if app.user %}
+                    {% if is_granted("ROLE_ADMIN") %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('admin_articles') }}">Articles</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('admin_users') }}">Utilisateurs</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('admin_orders') }}">Commandes</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('admin_category') }}">Catégories</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('admin_suppliers') }}">Fournisseurs</a>
+                        </li>
+                    {% endif %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('customer_cart') }}">Mon Panier</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('app_profile') }}"><i class="fas fa-user-circle"></i></a>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+</div>
+
+{% block javascripts %}
+
+<script>
+
+    const burger = document.getElementById("burger");
+
+    burger.addEventListener('click', (event) => {
+        
+        const nav = document.getElementById("nav-mobile");
+
+        if($('#nav-mobile').is(":hidden")){
+            $('#nav-mobile').show();
+        } else {
+            console.log('show');
+            $('#nav-mobile').hide();
+        }
+
+    })
+
+</script>
+
+{% endblock %}

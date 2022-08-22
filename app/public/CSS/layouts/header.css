@@ -27,3 +27,25 @@
     font-size: 24px;
     color: rgba(0,0,0,.55);
 }
+
+.header .navigation .navbar-collapse{
+    display: flex!important;
+    flex-direction: row;
+}
+
+.header .navigation .navbar-collapse .navbar-nav{
+    flex-direction: row!important;
+}
+
+.navigation-mobile{
+    display: none;
+}
+
+.navigation-mobile .navbar-collapse{
+    justify-content: center;
+}
+
+.navigation-mobile .navbar-nav{
+    flex-direction: column!important;
+    align-items: center;
+}
