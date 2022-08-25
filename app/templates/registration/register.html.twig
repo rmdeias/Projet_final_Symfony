@@ -36,56 +36,69 @@
   </header>
 
 <main>
+
     <h1>S'inscrire</h1>
 
     {{ form_start(registrationForm, {'attr': {'class' : 'form-row col-10'}}) }}
         <div class="content">
             {{ form_label(registrationForm.name)}}
             {{ form_widget(registrationForm.name, {'attr' : {'class' : 'form-control'}})}}
+            {{ form_errors(registrationForm.name, {'attr' : {'class' : 'invalid-feedback'}})}}
         </div>
         <div class="content">
             {{ form_label(registrationForm.firstname)}}
             {{ form_widget(registrationForm.firstname, {'attr' : {'class' : 'form-control'}})}}
+            {{ form_errors(registrationForm.firstname, {'attr' : {'class' : 'invalid-feedback'}})}}
         </div>
         <div class="content">
             {{ form_label(registrationForm.address)}}
             {{ form_widget(registrationForm.address, {'attr' : {'class' : 'form-control'}})}}
+            {{ form_errors(registrationForm.address, {'attr' : {'class' : 'invalid-feedback'}})}}
         </div>
         <div class="content">
             {{ form_label(registrationForm.additionalAddress)}}
             {{ form_widget(registrationForm.additionalAddress, {'attr' : {'class' : 'form-control'}})}}
+            {{ form_errors(registrationForm.additionalAddress, {'attr' : {'class' : 'invalid-feedback'}})}}
         </div>
         <div class="content">
             {{ form_label(registrationForm.streetNumber)}}
             {{ form_widget(registrationForm.streetNumber, {'attr' : {'class' : 'form-control'}})}}
+            {{ form_errors(registrationForm.streetNumber, {'attr' : {'class' : 'invalid-feedback'}})}}
         </div>
         <div class="content">
             {{ form_label(registrationForm.zipCode)}}
             {{ form_widget(registrationForm.zipCode, {'attr' : {'class' : 'form-control'}})}}
+            {{ form_errors(registrationForm.zipCode, {'attr' : {'class' : 'invalid-feedback'}})}}
         </div>
         <div class="content">
             {{ form_label(registrationForm.city)}}
             {{ form_widget(registrationForm.city, {'attr' : {'class' : 'form-control'}})}}
+            {{ form_errors(registrationForm.city, {'attr' : {'class' : 'invalid-feedback'}})}}
         </div>
         <div class="content">
             {{ form_label(registrationForm.country)}}
             {{ form_widget(registrationForm.country, {'attr' : {'class' : 'form-control'}})}}
+            {{ form_errors(registrationForm.country, {'attr' : {'class' : 'invalid-feedback'}})}}
         </div>
         <div class="content">
             {{ form_label(registrationForm.email)}}
             {{ form_widget(registrationForm.email, {'attr' : {'class' : 'form-control'}})}}
+            {{ form_errors(registrationForm.email, {'attr' : {'class' : 'invalid-feedback'}})}}
         </div>
         <div class="content">
             {{ form_label(registrationForm.plainPassword)}}
             {{ form_widget(registrationForm.plainPassword, {'attr' : {'class' : 'form-control'}})}}
+            {{ form_errors(registrationForm.plainPassword, {'attr' : {'class' : 'invalid-feedback'}})}}
         </div>
         <div class="content">
             {{ form_label(registrationForm.agreeTerms)}}
             {{ form_widget(registrationForm.agreeTerms, {'attr' : {'class' : 'input-group-text'}})}}
+            {{ form_errors(registrationForm.agreeTerms, {'attr' : {'class' : 'invalid-feedback'}})}}
         </div>
 
         <button type="submit" class="btn btn-success">S'inscrire</button>
     {{ form_end(registrationForm) }}
+
 </main>
 
   {% block javascripts %}

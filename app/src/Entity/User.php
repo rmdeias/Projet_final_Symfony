@@ -9,8 +9,11 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
+#[Vich\Uploadable]
 #[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
@@ -20,6 +23,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $id;
 
     #[ORM\Column(type: 'string', length: 180, unique: true)]
+    #[Assert\NotNull]    
+    #[Assert\Email(message: "L\'email {{ value }} n\'est pas valide.")]
     private $email;
 
     #[ORM\Column(type: 'json')]
@@ -29,30 +34,38 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $password;
 
     #[ORM\Column(type: 'string', length: 255)]
+    #[Assert\NotBlank(message: "Veuillez renseingé votre nom")]
     private $name;
 
     #[ORM\Column(type: 'string', length: 255)]
+    #[Assert\NotBlank(message: "Veuillez renseingé votre prénom")]
     private $firstName;
 
     #[ORM\Column(type: 'boolean')]
     private $restriction;
 
     #[ORM\Column(type: 'string', length: 255)]
+    #[Assert\NotBlank(message: "Veuillez renseingé votre code postal")]
     private $zipCode;
 
     #[ORM\Column(type: 'string', length: 255)]
+    #[Assert\NotBlank(message: "Veuillez renseingé votre ville")]
     private $city;
 
     #[ORM\Column(type: 'integer')]
+    #[Assert\NotBlank(message: "Veuillez renseingé votre numéro de rue")]
     private $streetNumber;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $additionalAddress;
 
     #[ORM\Column(type: 'string', length: 255)]
+    #[Assert\NotBlank(message: "Veuillez renseingé votre adresse")]
     private $address;
 
     #[ORM\Column(type: 'string', length: 255)]
+    #[Assert\NotBlank(message: "Veuillez renseingé votre pays")]
+    #[Assert\Country(message: "{{ value }} ne correspond à aucun pays")]
     private $country;
 
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: CustomerOrder::class)]
@@ -60,6 +73,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\ManyToMany(targetEntity: PaymentMethod::class, mappedBy: 'users')]
     private $paymentMethods;
+
+    #[ORM\OneToOne(targetEntity: Image::class, cascade: ['persist', 'remove'])]
+    private $cover;
+
 
     public function __construct()
     {
@@ -303,4 +320,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
+
+    public function getCover(): ?Image
+    {
+        return $this->cover;
+    }
+
+    public function setCover(?Image $cover): self
+    {
+        $this->cover = $cover;
+
+        return $this;
+    }
+
 }

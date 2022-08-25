@@ -21,51 +21,67 @@
             <div class="content">
                 {{ form_label(form.name) }}
                 {{ form_widget(form.name, {'attr' : {'class' : 'form-control'}}) }}
+                {{ form_errors(form.name, {'attr' : {'class' : 'invalid-feedback'}})}}
             </div>
 
             <div class="content">
                 {{ form_label(form.firstname) }}
                 {{ form_widget(form.firstname, {'attr' : {'class' : 'form-control'}}) }}
+                {{ form_errors(form.firstname, {'attr' : {'class' : 'invalid-feedback'}})}}
             </div>
 
             <div class="content">
                 {{ form_label(form.email) }}
                 {{ form_widget(form.email, {'attr' : {'class' : 'form-control'}}) }}
+                {{ form_errors(form.email, {'attr' : {'class' : 'invalid-feedback'}})}}
             </div>
 
             <div class="content">
                 {{ form_label(form.address) }}
                 {{ form_widget(form.address, {'attr' : {'class' : 'form-control'}}) }}
+                {{ form_errors(form.address, {'attr' : {'class' : 'invalid-feedback'}})}}
             </div>
 
             <div class="content">
                 {{ form_label(form.additionalAddress) }}
                 {{ form_widget(form.additionalAddress, {'attr' : {'class' : 'form-control'}}) }}
+                {{ form_errors(form.additionalAddress, {'attr' : {'class' : 'invalid-feedback'}})}}
             </div>
 
             <div class="content">
                 {{ form_label(form.streetNumber) }}
                 {{ form_widget(form.streetNumber, {'attr' : {'class' : 'form-control'}}) }}
+                {{ form_errors(form.streetNumber, {'attr' : {'class' : 'invalid-feedback'}})}}
             </div>
 
             <div class="content">
                 {{ form_label(form.zipCode) }}
                 {{ form_widget(form.zipCode, {'attr' : {'class' : 'form-control'}}) }}
+                {{ form_errors(form.zipCode, {'attr' : {'class' : 'invalid-feedback'}})}}
             </div>
 
             <div class="content">
                 {{ form_label(form.city) }}
                 {{ form_widget(form.city, {'attr' : {'class' : 'form-control'}}) }}
+                {{ form_errors(form.city, {'attr' : {'class' : 'invalid-feedback'}})}}
             </div>
 
             <div class="content">
                 {{ form_label(form.country) }}
                 {{ form_widget(form.country, {'attr' : {'class' : 'form-control'}}) }}
+                {{ form_errors(form.country, {'attr' : {'class' : 'invalid-feedback'}})}}
+            </div>
+
+            <div class="content">
+                {{ form_label(form.cover) }}
+                {{ form_widget(form.cover, {'attr' : {'class' : 'form-control'}}) }}
+                {{ form_errors(form.cover, {'attr' : {'class' : 'invalid-feedback'}})}}
             </div>
 
             <div class="content">
                 {{ form_label(form.paymentMethods) }}
                 {{ form_widget(form.paymentMethods, {'attr' : {'class' : 'form-control'}}) }}
+                {{ form_errors(form.paymentMethods, {'attr' : {'class' : 'invalid-feedback'}})}}
             </div>
 
             <button class= "btn btn-success mt-5 mb-5" type= "submit">Valider</button>

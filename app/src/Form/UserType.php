@@ -10,6 +10,7 @@ use App\Entity\User;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\CountryType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -46,7 +47,7 @@ class UserType extends AbstractType
             ->add('zipCode',  TextType::class, [
                 'label' => 'Code postal :',
             ])
-            ->add('country',  TextType::class, [
+            ->add('country',  CountryType::class, [
                 'label' => 'Pays :',
             ])
             ->add('restriction',  CheckboxType::class, [

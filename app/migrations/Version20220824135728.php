@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20220728155009 extends AbstractMigration
+final class Version20220824135728 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -26,10 +26,11 @@ final class Version20220728155009 extends AbstractMigration
         $this->addSql('CREATE TABLE category (id INT AUTO_INCREMENT NOT NULL, libelle VARCHAR(255) NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE customer_order (id INT AUTO_INCREMENT NOT NULL, user_id INT NOT NULL, payment_method_id INT NOT NULL, statut VARCHAR(255) NOT NULL, date DATE NOT NULL, INDEX IDX_3B1CE6A3A76ED395 (user_id), INDEX IDX_3B1CE6A35AA1164F (payment_method_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE customer_order_article (customer_order_id INT NOT NULL, article_id INT NOT NULL, INDEX IDX_9025D72EA15A2E17 (customer_order_id), INDEX IDX_9025D72E7294869C (article_id), PRIMARY KEY(customer_order_id, article_id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
+        $this->addSql('CREATE TABLE image (id INT AUTO_INCREMENT NOT NULL, image_name VARCHAR(255) NOT NULL, mime_type VARCHAR(255) DEFAULT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE payment_method (id INT AUTO_INCREMENT NOT NULL, type VARCHAR(255) NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE payment_method_user (payment_method_id INT NOT NULL, user_id INT NOT NULL, INDEX IDX_67CB7CE55AA1164F (payment_method_id), INDEX IDX_67CB7CE5A76ED395 (user_id), PRIMARY KEY(payment_method_id, user_id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE supplier (id INT AUTO_INCREMENT NOT NULL, libelle VARCHAR(255) NOT NULL, when_deleted DATE DEFAULT NULL, phone VARCHAR(30) NOT NULL, address VARCHAR(255) NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
-        $this->addSql('CREATE TABLE user (id INT AUTO_INCREMENT NOT NULL, email VARCHAR(180) NOT NULL, roles JSON NOT NULL, password VARCHAR(255) NOT NULL, name VARCHAR(255) NOT NULL, first_name VARCHAR(255) NOT NULL, restriction TINYINT(1) NOT NULL, zip_code VARCHAR(255) NOT NULL, city VARCHAR(255) NOT NULL, street_number INT NOT NULL, additional_address VARCHAR(255) DEFAULT NULL, address VARCHAR(255) NOT NULL, country VARCHAR(255) NOT NULL, UNIQUE INDEX UNIQ_8D93D649E7927C74 (email), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
+        $this->addSql('CREATE TABLE user (id INT AUTO_INCREMENT NOT NULL, cover_id INT DEFAULT NULL, email VARCHAR(180) NOT NULL, roles JSON NOT NULL, password VARCHAR(255) NOT NULL, name VARCHAR(255) NOT NULL, first_name VARCHAR(255) NOT NULL, restriction TINYINT(1) NOT NULL, zip_code VARCHAR(255) NOT NULL, city VARCHAR(255) NOT NULL, street_number INT NOT NULL, additional_address VARCHAR(255) DEFAULT NULL, address VARCHAR(255) NOT NULL, country VARCHAR(255) NOT NULL, UNIQUE INDEX UNIQ_8D93D649E7927C74 (email), UNIQUE INDEX UNIQ_8D93D649922726E9 (cover_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('ALTER TABLE article_category ADD CONSTRAINT FK_53A4EDAA7294869C FOREIGN KEY (article_id) REFERENCES article (id) ON DELETE CASCADE');
         $this->addSql('ALTER TABLE article_category ADD CONSTRAINT FK_53A4EDAA12469DE2 FOREIGN KEY (category_id) REFERENCES category (id) ON DELETE CASCADE');
         $this->addSql('ALTER TABLE article_variation ADD CONSTRAINT FK_B8AE63CE2ADD6D8C FOREIGN KEY (supplier_id) REFERENCES supplier (id)');
@@ -40,6 +41,7 @@ final class Version20220728155009 extends AbstractMigration
         $this->addSql('ALTER TABLE customer_order_article ADD CONSTRAINT FK_9025D72E7294869C FOREIGN KEY (article_id) REFERENCES article (id) ON DELETE CASCADE');
         $this->addSql('ALTER TABLE payment_method_user ADD CONSTRAINT FK_67CB7CE55AA1164F FOREIGN KEY (payment_method_id) REFERENCES payment_method (id) ON DELETE CASCADE');
         $this->addSql('ALTER TABLE payment_method_user ADD CONSTRAINT FK_67CB7CE5A76ED395 FOREIGN KEY (user_id) REFERENCES user (id) ON DELETE CASCADE');
+        $this->addSql('ALTER TABLE user ADD CONSTRAINT FK_8D93D649922726E9 FOREIGN KEY (cover_id) REFERENCES image (id)');
     }
 
     public function down(Schema $schema): void
@@ -50,6 +52,7 @@ final class Version20220728155009 extends AbstractMigration
         $this->addSql('ALTER TABLE customer_order_article DROP FOREIGN KEY FK_9025D72E7294869C');
         $this->addSql('ALTER TABLE article_category DROP FOREIGN KEY FK_53A4EDAA12469DE2');
         $this->addSql('ALTER TABLE customer_order_article DROP FOREIGN KEY FK_9025D72EA15A2E17');
+        $this->addSql('ALTER TABLE user DROP FOREIGN KEY FK_8D93D649922726E9');
         $this->addSql('ALTER TABLE customer_order DROP FOREIGN KEY FK_3B1CE6A35AA1164F');
         $this->addSql('ALTER TABLE payment_method_user DROP FOREIGN KEY FK_67CB7CE55AA1164F');
         $this->addSql('ALTER TABLE article_variation DROP FOREIGN KEY FK_B8AE63CE2ADD6D8C');
@@ -61,6 +64,7 @@ final class Version20220728155009 extends AbstractMigration
         $this->addSql('DROP TABLE category');
         $this->addSql('DROP TABLE customer_order');
         $this->addSql('DROP TABLE customer_order_article');
+        $this->addSql('DROP TABLE image');
         $this->addSql('DROP TABLE payment_method');
         $this->addSql('DROP TABLE payment_method_user');
         $this->addSql('DROP TABLE supplier');
