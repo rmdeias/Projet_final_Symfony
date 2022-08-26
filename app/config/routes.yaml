@@ -9,3 +9,4 @@ kernel:
 app_logout:
     path: /logout
     methods: GET
+

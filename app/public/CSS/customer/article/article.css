@@ -1,0 +1,14 @@
+
+.article{
+    display: flex;
+    flex-direction: row;
+}
+
+.article .cover-article{
+    background-color: yellow;
+    width: 50%;
+}
+
+.article .article-description ul{
+    list-style-type: none;
+}

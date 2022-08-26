@@ -13,14 +13,14 @@
     <div class="home-client">
 
         {% for article in articles %}
-            <a href="#" class="link">
+            <a href="{{ path('article_id', {id: article.id}) }}" class="link">
                 <div class="card col-4">
                     <div class="card-body">
                         <div class="img"></div>
                         <div class="content-card">
                             <div class="description">
                                 <h3 class="title">{{ article.libelle }}</h3>
-                                <p class="price">{{ article.price }} €</p>
+                                <p class="price">{{ article.price }} €</p> {% if article.promo is not null %}- {{article.promo }} %{% endif %}
                             </div>
                             {% if app.user %}
                                 <a href="#">Ajouter au panier</a>

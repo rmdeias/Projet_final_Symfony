@@ -1,0 +1,46 @@
+{% extends 'Common/base.html.twig' %}
+
+{% block stylesheets %}
+
+    {{ parent() }}
+
+    <link rel="stylesheet" type="text/css" href="{{ asset('CSS/customer/article/article.css') }}">
+
+
+{% endblock %}
+
+{% block content %}
+
+    <div class="article">
+
+        <div class="cover-article">
+
+        </div>
+        <div class="article-description">
+            <h1>{{article.libelle}}</h1>
+
+            <p class="description">
+                Description :{{article.description}}
+            </p>
+
+            <ul>
+                {% for category in article.category %}
+                    <li>{{category.libelle}} /</li>
+                {% endfor %}
+            <ul>
+
+            <h3>{{article.price}}€ {% if article.promo is not null %}- {{article.promo}}%{% endif %}</h3>
+            <select>
+                {% for variation in article.variation %}
+                    <option>{{variation.size}}</option>
+                {% endfor %}
+            </select>
+
+            <button class="btn btn-success" type="submit">Valider</button>
+            
+        </div>
+        
+    </div>
+
+
+{% endblock %}

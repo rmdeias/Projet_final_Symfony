@@ -9,7 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\Persistence\ManagerRegistry as PersistenceManagerRegistry;
-#[Route("/admin/suppliers")]
+#[Route("/admin2/suppliers")]
 class SuppliersController extends AbstractController
 {
     #[Route('/', name: 'admin_suppliers')]

@@ -6,7 +6,7 @@ use App\Repository\CustomerOrderRepository;
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
-#[Route("/admin/orders")]
+#[Route("/admin2/orders")]
 class OrdersController extends AbstractController
 {
     #[Route('/', name: 'admin_orders')]

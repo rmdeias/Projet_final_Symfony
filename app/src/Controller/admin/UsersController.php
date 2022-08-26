@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\Persistence\ManagerRegistry as PersistenceManagerRegistry;
 
-#[Route("/admin/users")]
+#[Route("/admin2/users")]
 class UsersController extends AbstractController
 {
     #[Route('/', name: 'admin_users')]

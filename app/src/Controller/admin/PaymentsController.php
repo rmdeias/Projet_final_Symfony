@@ -11,7 +11,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\Persistence\ManagerRegistry as PersistenceManagerRegistry;
 
 
-#[Route("/admin/payments")]
+#[Route("/admin2/payments")]
 class PaymentsController extends AbstractController
 {
     #[Route('/', name: 'admin_payments')]

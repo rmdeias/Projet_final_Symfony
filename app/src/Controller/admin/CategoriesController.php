@@ -11,7 +11,7 @@ use Symfony\Bridge\Doctrine\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
-#[Route("/admin/category")]
+#[Route("/admin2/category")]
 class CategoriesController extends AbstractController
 {
     #[Route('/', name: 'admin_category')]

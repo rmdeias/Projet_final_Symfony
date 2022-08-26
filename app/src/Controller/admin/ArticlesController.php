@@ -13,7 +13,7 @@ use App\Repository\VariationArticleRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route("/admin/articles")]
+#[Route("/admin2/articles")]
 class ArticlesController extends AbstractController
 {
     #[Route('/', name: 'admin_articles')]
